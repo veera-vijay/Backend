@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <div className="min-h-screen scrollbar-hide bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600">
@@ -12,15 +17,16 @@ const Home = () => {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div
-              className="flex items-center space-x-2 cursor-pointer "
+              className="flex items-center space-x-2 cursor-pointer"
               onClick={() => navigate("/")}
             >
               <span className="text-2xl">📚</span>
               <span className="text-white font-bold text-xl">BookStore</span>
             </div>
 
-            {/* Auth Buttons */}
-            <div className="flex space-x-3">
+            {/* DESKTOP MENU - Desktop la matum visible (optional - hide if you want nothing) */}
+            {/* If you want NO buttons on desktop, keep this hidden */}
+            <div className="hidden lg:flex space-x-3">
               <button
                 onClick={() => navigate("/")}
                 className="bg-gray-300 text-black px-3 cursor-pointer rounded-full hover:bg-white/30 transition duration-300 font-medium"
@@ -29,17 +35,95 @@ const Home = () => {
               </button>
               <button
                 onClick={() => navigate("/login")}
-                className="px-4 py-1.5 bg-white/20 text-white cursor-pointer  rounded-full hover:bg-white/30 transition duration-300 font-medium"
+                className="px-4 py-1.5 bg-white/20 text-white cursor-pointer rounded-full hover:bg-white/30 transition duration-300 font-medium"
               >
                 Login
               </button>
               <button
                 onClick={() => navigate("/register")}
-                className="px-4 py-1.5 bg-white/20 cursor-pointer text-white rounded-full hover:bg-white/30 transition duration-300 font-medium  hover:cursor"
+                className="px-4 py-1.5 bg-white/20 cursor-pointer text-white rounded-full hover:bg-white/30 transition duration-300 font-medium"
               >
                 Register
               </button>
             </div>
+
+            {/* MOBILE & TABLET MENU BUTTON - Only on mobile and tablet */}
+            {/* visible on screens BELOW 1024px (mobile & tablet), hidden on desktop */}
+            <div className="block lg:hidden">
+              <button
+                onClick={toggleMenu}
+                className="text-white p-2 rounded-lg hover:bg-white/20 transition duration-300 focus:outline-none"
+              >
+                {!isMenuOpen ? (
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* MOBILE & TABLET DROPDOWN MENU - Only on mobile and tablet */}
+        <div
+          className={`lg:hidden transition-all duration-300 ease-in-out ${
+            isMenuOpen
+              ? "max-h-64 opacity-100 visible"
+              : "max-h-0 opacity-0 invisible"
+          } overflow-hidden bg-white/10 backdrop-blur-md`}
+        >
+          <div className="px-4 pt-2 pb-4 space-y-2">
+            <button
+              onClick={() => {
+                setIsMenuOpen(false);
+                navigate("/");
+              }}
+              className="w-full text-left px-4 py-2 text-white bg-white/10 rounded-lg hover:bg-white/20 transition duration-300 font-medium"
+            >
+              🏠 Home
+            </button>
+            <button
+              onClick={() => {
+                setIsMenuOpen(false);
+                navigate("/login");
+              }}
+              className="w-full text-left px-4 py-2 text-white bg-white/10 rounded-lg hover:bg-white/20 transition duration-300 font-medium"
+            >
+              🔐 Login
+            </button>
+            <button
+              onClick={() => {
+                setIsMenuOpen(false);
+                navigate("/register");
+              }}
+              className="w-full text-left px-4 py-2 text-white bg-white/10 rounded-lg hover:bg-white/20 transition duration-300 font-medium"
+            >
+              📝 Register
+            </button>
           </div>
         </div>
       </nav>
@@ -47,36 +131,32 @@ const Home = () => {
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="text-center">
-          {/* Animated Badge */}
           <div className="inline-block animate-bounce mb-4">
             <span className="bg-white/20 backdrop-blur-sm text-white px-4 py-1 rounded-full text-sm">
               ✨ Welcome to BookStore ✨
             </span>
           </div>
 
-          {/* Main Title */}
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-fadeIn">
             Discover Your Next
             <span className="text-yellow-300"> Great Read</span>
           </h1>
 
-          {/* Subtitle */}
-          <p className="text-lg md:text-xl flex justify-center text-center text-white/90 mb-8 animate-slideUp ">
+          <p className="text-lg md:text-xl flex justify-center text-center text-white/90 mb-8 animate-slideUp">
             Join our community of book lovers. Explore thousands of books,
             connect with authors, and share your reading journey.
           </p>
 
-          {/* CTA Buttons */}
           <div className="mt-4 flex flex-col sm:flex-row gap-4 justify-center animate-slideUp">
             <button
               onClick={() => navigate("/register")}
-              className="px-8 py-3 bg-yellow-500  cursor-pointer text-purple-900 font-bold rounded-full hover:bg-yellow-400 transform hover:scale-105 transition duration-300 shadow-lg"
+              className="px-8 py-3 bg-yellow-500 cursor-pointer text-purple-900 font-bold rounded-full hover:bg-yellow-400 transform hover:scale-105 transition duration-300 shadow-lg"
             >
               Get Started Free
             </button>
             <button
               onClick={() => navigate("/login")}
-              className="px-8 py-3 bg-white/20  cursor-pointer text-white font-semibold rounded-full hover:bg-white/30 transform hover:scale-105 transition duration-300 backdrop-blur-sm"
+              className="px-8 py-3 bg-white/20 cursor-pointer text-white font-semibold rounded-full hover:bg-white/30 transform hover:scale-105 transition duration-300 backdrop-blur-sm"
             >
               Sign In
             </button>
@@ -84,8 +164,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* ========== FOOTER - FULL WIDTH ========== */}
-      {/* Moved OUTSIDE the max-w-7xl container */}
+      {/* Footer */}
       <footer className="w-full bg-gray-900/95 backdrop-blur-sm -mt-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <p className="text-white/70 text-sm text-center">
@@ -94,7 +173,6 @@ const Home = () => {
         </div>
       </footer>
 
-      {/* Animations */}
       <style jsx>{`
         @keyframes fadeIn {
           from {
@@ -106,6 +184,7 @@ const Home = () => {
             transform: translateY(0);
           }
         }
+
         ::-webkit-scrollbar {
           display: none;
         }
