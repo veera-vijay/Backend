@@ -28,9 +28,9 @@ export const Adminstd = () => {
               {/* Create Button */}
               <button
                 onClick={() => navigate("/stdform")}
-                className="bg-green-500 cursor-pointer hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+                className="bg-green-500 cursor-pointer hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
               >
-                ✨ Create
+                ✨Create
               </button>
 
               {/* Get Button */}
@@ -44,7 +44,7 @@ export const Adminstd = () => {
               {/* View All Button */}
               <button
                 onClick={() => navigate("/viewallstd")}
-                className="bg-purple-500 cursor-pointer hover:bg-purple-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+                className="bg-purple-500 cursor-pointer hover:bg-purple-600 text-white font-semibold py-3 px-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
               >
                 👁️ View All
               </button>

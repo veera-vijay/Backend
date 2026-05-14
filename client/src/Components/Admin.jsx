@@ -28,7 +28,7 @@ export const Admin = () => {
               {/* Create Button */}
               <button
                 onClick={() => navigate("/createbook")}
-                className="bg-green-500 hover:bg-green-600 cursor-pointer text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+                className="bg-green-500 hover:bg-green-600 cursor-pointer text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
               >
                 ✨ Create
               </button>
@@ -44,7 +44,7 @@ export const Admin = () => {
               {/* View All Button */}
               <button
                 onClick={() => navigate("/viewbooks")}
-                className="bg-purple-500 hover:bg-purple-600 cursor-pointer text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+                className="bg-purple-500 hover:bg-purple-600 cursor-pointer text-white font-semibold py-3 px-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
               >
                 👁️ View All
               </button>

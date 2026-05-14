@@ -96,7 +96,7 @@ const Createbooks = () => {
 
         <form onSubmit={handleSubmit} className="space-y-2">
           <div>
-            <label className="block flex flex-start  text-gray-600 text-sm font-semibold mb-0.5">
+            <label className="block flex flex-start  text-gray-600 text-xs font-semibold mb-0.5">
               Title
             </label>
             <input
@@ -110,7 +110,7 @@ const Createbooks = () => {
           </div>
 
           <div>
-            <label className="block flex flex-start text-gray-600 text-sm font-semibold mb-0.5">
+            <label className="block flex flex-start text-gray-600 text-xs font-semibold mb-0.5">
               Author
             </label>
             <input
@@ -124,7 +124,7 @@ const Createbooks = () => {
           </div>
 
           <div>
-            <label className="block  flex flex-start text-gray-600 text-sm font-semibold mb-0.5">
+            <label className="block  flex flex-start text-gray-600 text-xs font-semibold mb-0.5">
               Published Year
             </label>
             <input
@@ -132,19 +132,21 @@ const Createbooks = () => {
               placeholder="Enter published year"
               value={publishedYear}
               onChange={(e) => setPublishedYear(e.target.value)}
-              className="w-full px-2 py-1.5 border font-medium border-gray-300 rounded text-black focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-200 text-xs"
+              className="w-full px-2 py-1.5 border font-medium border-gray-300 rounded text-black focus:outline-none focus:border-purple-500 focus:ring-1 font-medium focus:ring-purple-200 text-xs"
               disabled={isLoading}
             />
           </div>
 
           <div>
-            <label className="block flex flex-start text-gray-600 text-sm font-semibold mb-0.5">
+            <label className="block flex flex-start text-gray-600 text-xs font-semibold mb-0.5">
               Category
             </label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-full px-2 py-1.5 border font-medium border-gray-300 rounded focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-200 text-xs text-black cursor-pointer"
+              className={`w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:border-purple-500 font-medium text-xs ${
+              category ? "text-black" : "text-gray-500"
+              }`}
               disabled={isLoading}
             >
               <option value="">Select Category</option>

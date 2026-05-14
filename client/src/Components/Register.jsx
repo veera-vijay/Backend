@@ -174,25 +174,27 @@ function Register() {
               />
             </div>
 
-            <div className="flex-1">
-              <label className="block flex flex-start text-gray-600 text-xs font-medium mb-0.5">
-                Gender
-              </label>
-              <select
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-                className="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:border-purple-500 font-medium text-black text-xs"
-                required
-                disabled={isLoading}
-              >
-                <option value="" className="text-xs">
-                  Select
-                </option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
+            <div>
+  <label className="block text-gray-600 flex flex-start text-xs font-medium mb-0.5">
+    Gender *
+  </label>
+  <select
+    value={gender}
+    onChange={(e) => setGender(e.target.value)}
+    className={`w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:border-purple-500 font-medium text-xs ${
+      gender ? "text-black" : "text-gray-400"
+    }`}
+    required
+    disabled={isLoading}
+  >
+    <option value="" disabled className="text-gray-400">
+      Select Gender
+    </option>
+    <option value="male" className="text-black">Male</option>
+    <option value="female" className="text-black">Female</option>
+    <option value="other" className="text-black">Other</option>
+  </select>
+</div>
           </div>
 
           <button
@@ -200,7 +202,7 @@ function Register() {
             disabled={isLoading}
             className="w-full bg-gradient-to-r cursor-pointer from-purple-600 to-indigo-600 text-white font-semibold py-1.5 rounded transition-opacity hover:opacity-90 text-sm mt-1 disabled:opacity-50"
           >
-            {isLoading ? "Registering..." : "Register"}
+            {isLoading ? "Registering..." : "Submit"}
           </button>
         </form>
 

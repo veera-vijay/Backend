@@ -64,11 +64,12 @@ const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="h-screen bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600 flex items-center justify-center p-4 overflow-hidden">
       <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 w-full max-w-md">
+      
         <div className="text-center mb-5">
-          <i className=" -ml-10 p-4 text-xl text-center font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+          {/* <i className=" -ml-10 p-4 text-xl text-center font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
             welcome
-          </i>
-          <p className="text-gray-500 text-sm mt-1">
+          </i> */}
+          <p className="text-gray-500 text-xsl mt-1 font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
             Please login to your account
           </p>
         </div>
@@ -91,9 +92,9 @@ const [showPassword, setShowPassword] = useState(false);
               Username
             </label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none ">
                 <svg
-                  className="h-4 w-4 text-gray-400"
+                  className="h-4 w-4 text-black"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -110,7 +111,7 @@ const [showPassword, setShowPassword] = useState(false);
                 type="text"
                 value={user}
                 onChange={(e) => setUser(e.target.value)}
-                className="w-full pl-9 pr-3 py-1.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300  text-black"
+                className="w-full pl-9 pr-3 py-1.5 border-2 border-black rounded-full focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 text-xs text-black"
                 placeholder="Enter your username"
                 disabled={isLoading}
                 autoFocus
@@ -125,7 +126,7 @@ const [showPassword, setShowPassword] = useState(false);
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
-                  className="h-4 w-4 text-gray-400"
+                  className="h-4 w-4 text-black"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -143,7 +144,7 @@ const [showPassword, setShowPassword] = useState(false);
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-9 pr-10 py-1.5 border-2 border-gray-600 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 text-black"
+                className="w-full pl-9 pr-10 text-xs py-1.5 border-2 border-black rounded-full focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 text-black"
                 placeholder="Enter your password"
               />
 
@@ -154,7 +155,7 @@ const [showPassword, setShowPassword] = useState(false);
               >
                 {showPassword ? (
                   <svg
-                    className="h-4 w-4 text-gray-500 hover:text-purple-600"
+                    className="h-4 w-4 text-black hover:text-purple-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
