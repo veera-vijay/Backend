@@ -10,7 +10,7 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen scrollbar-hide bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600">
       {/* Navbar */}
       <nav className="bg-white/10 scrollbar-hide backdrop-blur-md shadow-lg sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,8 +24,7 @@ const Home = () => {
               <span className="text-white font-bold text-xl">BookStore</span>
             </div>
 
-            {/* DESKTOP MENU - Desktop la matum visible (optional - hide if you want nothing) */}
-            {/* If you want NO buttons on desktop, keep this hidden */}
+            {/* DESKTOP MENU */}
             <div className="hidden lg:flex space-x-3">
               <button
                 onClick={() => navigate("/")}
@@ -47,8 +46,7 @@ const Home = () => {
               </button>
             </div>
 
-            {/* MOBILE & TABLET MENU BUTTON - Only on mobile and tablet */}
-            {/* visible on screens BELOW 1024px (mobile & tablet), hidden on desktop */}
+            {/* MOBILE & TABLET MENU BUTTON */}
             <div className="block lg:hidden">
               <button
                 onClick={toggleMenu}
@@ -88,7 +86,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/* MOBILE & TABLET DROPDOWN MENU - Only on mobile and tablet */}
+        {/* MOBILE & TABLET DROPDOWN MENU */}
         <div
           className={`lg:hidden transition-all duration-300 ease-in-out ${
             isMenuOpen
@@ -128,45 +126,47 @@ const Home = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="text-center">
-          <div className="inline-block animate-bounce mb-4">
-            <span className="bg-white/20 backdrop-blur-sm text-white px-4 py-1 rounded-full text-sm">
-              ✨ Welcome to BookStore ✨
-            </span>
-          </div>
+      {/* Hero Section - This will grow to push footer down */}
+      <div className="flex-grow">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div className="text-center">
+            <div className="inline-block animate-bounce mb-4">
+              <span className="bg-white/20 backdrop-blur-sm text-white px-4 py-1 rounded-full text-sm ">
+                ✨ Welcome to BookStore ✨
+              </span>
+            </div>
 
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-fadeIn">
-            Discover Your Next
-            <span className="text-yellow-300"> Great Read</span>
-          </h1>
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-fadeIn">
+              Discover Your Next
+              <span className="text-yellow-300"> Great Read</span>
+            </h1>
 
-          <p className="text-lg md:text-xl flex justify-center text-center text-white/90 mb-8 animate-slideUp">
-            Join our community of book lovers. Explore thousands of books,
-            connect with authors, and share your reading journey.
-          </p>
+            <p className="text-lg md:text-xl flex justify-center text-center text-white/90 mb-8 animate-slideUp">
+              Join our community of book lovers. Explore thousands of books,
+              connect with authors, and share your reading journey.
+            </p>
 
-          <div className="mt-4 flex flex-col sm:flex-row gap-4 justify-center animate-slideUp">
-            <button
-              onClick={() => navigate("/register")}
-              className="px-8 py-3 bg-yellow-500 cursor-pointer text-purple-900 font-bold rounded-full hover:bg-yellow-400 transform hover:scale-105 transition duration-300 shadow-lg"
-            >
-              Get Started Free
-            </button>
-            <button
-              onClick={() => navigate("/login")}
-              className="px-8 py-3 bg-white/20 cursor-pointer text-white font-semibold rounded-full hover:bg-white/30 transform hover:scale-105 transition duration-300 backdrop-blur-sm"
-            >
-              Sign In
-            </button>
+            <div className="mt-4 flex flex-col sm:flex-row gap-4 justify-center animate-slideUp">
+              <button
+                onClick={() => navigate("/register")}
+                className="px-8 py-3 bg-yellow-500 cursor-pointer text-purple-900 font-bold rounded-full hover:bg-yellow-400 transform hover:scale-105 transition duration-300 shadow-lg"
+              >
+                Get Started Free
+              </button>
+              <button
+                onClick={() => navigate("/login")}
+                className="px-8 py-3 bg-white/20 cursor-pointer text-white font-semibold rounded-full hover:bg-white/30 transform hover:scale-105 transition duration-300 backdrop-blur-sm"
+              >
+                Sign In
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="w-full bg-gray-900/95 backdrop-blur-sm -mt-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      {/* Footer - Will stick to bottom */}
+      <footer className="w-full bg-gray-900/95 backdrop-blur-sm  md:-mt-20">
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-2 py-4">
           <p className="text-white/70 text-sm text-center">
             © 2024 BookStore. All rights reserved. Made with ❤️ for book lovers.
           </p>
