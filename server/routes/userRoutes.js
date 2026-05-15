@@ -1,6 +1,8 @@
 const userController=require("../controller/userController")
 const  express=require("express")
 const router=express.Router();
+const { verifyToken } = require("../utils/jwt"); // ← ADD THIS
+
 router.post("/user-post",userController.createUser)
 router.post("/user-login",userController.login)
 router.post("/user-createbook",userController.book)

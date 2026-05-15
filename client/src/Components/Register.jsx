@@ -28,15 +28,20 @@ function Register() {
         age,
         gender
       });
+        if (response.data.token) {
+          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("user", JSON.stringify(response.data.user));
+          console.log("Token saved from registration:", response.data.token);
+        }
       setMsg({ type: 'success', text: 'Registration successful!' });
       setUsername('');
       setEmail('');
       setPassword('');
       setAge('');
       setGender('');
-    //   setTimeout(() => {
-    //     navigate('/Login');
-    //   }, 1500);
+       setTimeout(() => {
+        navigate('/Login');
+       }, 1500);
     } catch (error) {
       setMsg({ type: 'error', text: error.response?.data?.message || 'Registration failed' });
       setTimeout(() => setMsg(''), 2000);
@@ -170,31 +175,56 @@ function Register() {
                 onChange={(e) => setAge(e.target.value)}
                 className="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:border-purple-500 font-medium text-black text-xs"
                 placeholder="Age"
+                required
                 disabled={isLoading}
               />
             </div>
 
             <div>
-  <label className="block text-gray-600 flex flex-start text-xs font-medium mb-0.5">
-    Gender *
-  </label>
-  <select
-    value={gender}
-    onChange={(e) => setGender(e.target.value)}
-    className={`w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:border-purple-500 font-medium text-xs ${
-      gender ? "text-black" : "text-gray-400"
-    }`}
-    required
-    disabled={isLoading}
-  >
-    <option value="" disabled className="text-gray-400">
-      Select Gender
-    </option>
-    <option value="male" className="text-black">Male</option>
-    <option value="female" className="text-black">Female</option>
-    <option value="other" className="text-black">Other</option>
-  </select>
-</div>
+              <label className="block text-gray-600 flex flex-start text-xs font-medium mb-2">
+                Gender
+              </label>
+              <div className="flex gap-4">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    checked={gender === "male"}
+                    onChange={(e) => setGender(e.target.value)}
+                    disabled={isLoading}
+                    className="w-3 h-3 text-purple-600 focus:ring-purple-500"
+                  />
+                  <span className="text-xs text-gray-700">Male</span>
+                </label>
+
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    checked={gender === "female"}
+                    onChange={(e) => setGender(e.target.value)}
+                    disabled={isLoading}
+                    className="w-3 h-3 text-purple-600 focus:ring-purple-500"
+                  />
+                  <span className="text-xs text-gray-700">Female</span>
+                </label>
+
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="other"
+                    checked={gender === "other"}
+                    onChange={(e) => setGender(e.target.value)}
+                    disabled={isLoading}
+                    className="w-3 h-3 text-purple-600 focus:ring-purple-500"
+                  />
+                  <span className="text-xs text-gray-700">Other</span>
+                </label>
+              </div>
+            </div>
           </div>
 
           <button
@@ -221,7 +251,7 @@ function Register() {
 
       <button
         onClick={() => navigate("/Home")}
-        className="fixed bottom-4 left-4 bg-white/90 cursor-pointer backdrop-blur-sm text-purple-600 font-semibold py-1.5 px-3 rounded-lg shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
+        className="fixed top-4 cursor-pointer left-4 bg-white/90 backdrop-blur-sm text-purple-600 font-semibold py-1.5 px-3 rounded-lg shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
       >
         <svg
           className="w-3 h-3"
@@ -236,7 +266,7 @@ function Register() {
             d="M10 19l-7-7m0 0l7-7m-7 7h18"
           />
         </svg>
-        Go to Home
+        Back
       </button>
     </div>
   );

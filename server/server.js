@@ -4,6 +4,8 @@ const dotenv=require("dotenv")
 const cors=require("cors")
 const bcrypt = require('bcryptjs');
 const connectDb=require("./config/db")
+const { verifyToken } = require("./utils/jwt");
+
 const app=express();
 dotenv.config();
 connectDb()
@@ -13,6 +15,13 @@ app.use(express.json())
 app.use(cors());
 
 app.use("/api",userRoutes)
+app.get("/api/protected", verifyToken, (req, res) => {
+  res.json({
+    success: true,
+    message: "You have access to protected route!",
+    user: req.user,
+  });
+});
 app.get("/",(req,res)=>{
     res.send("Backend is running")
 })

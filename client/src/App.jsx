@@ -7,7 +7,7 @@ import Admin from"./Components/Admin";
 import Adminstd from "./Components/Adminstd";
 import Createbooks from './Components/Createbooks';
 import Viewbooks from './Components/Viewbooks';
-import Connect from "./Components/Connect";
+import Dashboard from "./Components/Dashboard";
 import StdForm from "./Components/StdForm";
 import Viewallstd from "./Components/Viewallstd";
 function App() {
@@ -25,7 +25,7 @@ function App() {
         <Route path="/viewbooks" element={<Viewbooks />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/adminstd" element={<Adminstd />} />
-        <Route path="/connect" element={<Connect />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/stdform" element={<StdForm />} />
         <Route path="/viewallstd" element={<Viewallstd />} />
 

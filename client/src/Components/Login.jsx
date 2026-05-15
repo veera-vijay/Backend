@@ -26,15 +26,24 @@ const [showPassword, setShowPassword] = useState(false);
         username: user,
         password: password,
       });
+ if (response.data.token) {
+                    setMsg({ type: 'success', text: 'Login successful! Redirecting...' });
 
-      if (response.data.success) {
-        setMsg({ type: 'success', text: 'Login successful! Redirecting...' });
-        
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('username', user);
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+      
+       const role = JSON.parse(localStorage.getItem('user')).role;
+  console.log("Your role is:", role); // "admin" or "student"
+  
+ 
+  if (role === 'admin') {
+    console.log("Welcome Admin!");
+  } else {
+    console.log("Welcome Student!");
+  }
         
         setTimeout(() => {
-          navigate("/connect");
+          navigate("/dashboard");
         }, 1000);
       } else {
         setMsg({ type: 'error', text: 'Login failed. Please check your credentials.' });
@@ -111,7 +120,7 @@ const [showPassword, setShowPassword] = useState(false);
                 type="text"
                 value={user}
                 onChange={(e) => setUser(e.target.value)}
-                className="w-full pl-9 pr-3 py-1.5 border-2 border-black rounded-full focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 text-xs text-black"
+                className="w-full pl-9 pr-3 py-1.5 border-2 border-black rounded-full focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 text-xs font-medium text-black"
                 placeholder="Enter your username"
                 disabled={isLoading}
                 autoFocus
@@ -144,7 +153,7 @@ const [showPassword, setShowPassword] = useState(false);
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-9 pr-10 text-xs py-1.5 border-2 border-black rounded-full focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 text-black"
+                className="w-full pl-9 pr-10 text-xs py-1.5 border-2 border-black rounded-full focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 text-black font-medium"
                 placeholder="Enter your password"
               />
 
@@ -257,7 +266,7 @@ const [showPassword, setShowPassword] = useState(false);
 
       <button
         onClick={() => navigate("/Home")}
-        className="fixed bottom-4 cursor-pointer left-4 bg-white/90 backdrop-blur-sm text-purple-600 font-semibold py-1.5 px-3 rounded-lg shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
+        className="fixed top-4 cursor-pointer left-4 bg-white/90 backdrop-blur-sm text-purple-600 font-semibold py-1.5 px-3 rounded-lg shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
       >
         <svg
           className="w-3 h-3"
@@ -272,7 +281,7 @@ const [showPassword, setShowPassword] = useState(false);
             d="M10 19l-7-7m0 0l7-7m-7 7h18"
           />
         </svg>
-        Go to Home
+        Back
       </button>
     </div>
   );

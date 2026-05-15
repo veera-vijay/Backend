@@ -18,6 +18,17 @@ export const Viewbooks = () => {
     const [deleting, setDeleting] = useState(false)
     const [message, setMessage] = useState(null)
     const navigate = useNavigate()
+    const [userRole, setUserRole] = useState(null);
+    
+      useEffect(() => {
+        // Get user role from localStorage
+        const userData = localStorage.getItem("user");
+        if (userData) {
+          const user = JSON.parse(userData);
+          setUserRole(user.role);
+          console.log("Logged in as:", user.role);
+        }
+      }, []);
 
     useEffect(() => {
         fetchBooks()
@@ -173,12 +184,15 @@ export const Viewbooks = () => {
                     <h3 className="text-lg font-semibold text-gray-700 mb-1">
                       No Books Found
                     </h3>
-                    <button
-                      onClick={() => navigate("/Createbook")}
-                      className="mt-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-1.5 px-4 rounded-lg transition"
-                    >
-                      + Create Book
-                    </button>
+                    {(userRole === "admin") &
+                    (
+                      <button
+                        onClick={() => navigate("/Createbook")}
+                        className="mt-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-1.5 px-4 rounded-lg transition"
+                      >
+                        + Create Book
+                      </button>
+                    )}
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
@@ -246,20 +260,24 @@ export const Viewbooks = () => {
                           </div>
 
                           {/* Action Buttons - Same as Student */}
-                          <div className="flex gap-2 mt-4 pt-2 border-t border-gray-100">
-                            <button
-                              onClick={() => openEditModal(book)}
-                              className="flex-1 bg-yellow-500 cursor-pointer hover:bg-yellow-600 text-white text-xs font-semibold py-2 rounded-lg transition duration-300"
-                            >
-                              ✏️ Edit
-                            </button>
-                            <button
-                              onClick={() => openDeleteModal(book)}
-                              className="flex-1 bg-red-500 cursor-pointer hover:bg-red-600 text-white text-xs font-semibold py-2 rounded-lg transition duration-300"
-                            >
-                              🗑️ Delete
-                            </button>
-                          </div>
+                          {(userRole === "admin") &&
+                          (
+                            <div className="flex gap-2 mt-4 pt-2 border-t border-gray-100">
+                              
+                              <button
+                                onClick={() => openEditModal(book)}
+                                className="flex-1 bg-yellow-500 cursor-pointer hover:bg-yellow-600 text-white text-xs font-semibold py-2 rounded-lg transition duration-300"
+                              >
+                                ✏️ Edit
+                              </button>
+                              <button
+                                onClick={() => openDeleteModal(book)}
+                                className="flex-1 bg-red-500 cursor-pointer hover:bg-red-600 text-white text-xs font-semibold py-2 rounded-lg transition duration-300"
+                              >
+                                🗑️ Delete
+                              </button>
+                            </div>
+                          )}
                         </div>
                       </div>
                     ))}
@@ -269,25 +287,27 @@ export const Viewbooks = () => {
             )}
 
             {/* Back Button - Same as Student */}
-            <button
-              onClick={() => navigate("/createbook")}
-              className="fixed bottom-4 cursor-pointer left-4 bg-white/90 backdrop-blur-sm text-purple-600 font-semibold py-1.5 px-3 rounded-lg shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
-            >
-              <svg
-                className="w-3 h-3"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+            {userRole === "admin" && (
+              <button
+                onClick={() => navigate("/createbook")}
+                className="fixed top-4 cursor-pointer left-4 bg-white/90 backdrop-blur-sm text-purple-600 font-semibold py-1.5 px-3 rounded-lg shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                />
-              </svg>
-              Go to Create
-            </button>
+                <svg
+                  className="w-3 h-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                  />
+                </svg>
+                Back
+              </button>
+            )}
           </div>
         </div>
 

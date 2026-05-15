@@ -2,27 +2,69 @@ const User = require("../models/user");
 const Book = require("../models/createbook");
 const Std = require("../models/Createstdform");
 const bcrypt = require("bcryptjs");
-
+const { generateToken } = require("../utils/jwt"); // ← ADD THIS LINE
 
 // Register / Create User
 const createUser = async (req, res) => {
   try {
-    const { username, password, email, age, gender } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const { username, password, email, age, gender,role } = req.body;
 
+      const existingUsername = await User.findOne({ username });
+      if (existingUsername) {
+        return res.status(400).json({
+          success: false,
+          message:
+            "Username already taken! Please choose a different username.",
+        });
+      }
+
+     const existingEmail = await User.findOne({ email });
+
+     if (existingEmail) {
+       return res.status(400).json({
+         success: false,
+         message:
+           "Email already registered! Please use a different email or login.",
+       });
+     }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    
+ console.log("Received:", { username, email, age, gender, role });
     const user = await User.create({
       username,
       password: hashedPassword,
       email,
       age,
       gender,
+      role: role || "student",
     });
-    res.status(201).json({ message: "Successfully created" });
+
+
+
+      const token = generateToken(user);
+
+
+    
+    res.status(201).json({
+      success: true,
+      message: "Successfully created",
+      token: token, // ← SEND TOKEN
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        role: user.role
+      },
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: err.message });
   }
 };
+
+
+
 
 const login = async (req, res) => {
   try {
@@ -47,17 +89,23 @@ const login = async (req, res) => {
       });
     }
 
-    res.status(200).json({
-      success: true,
-      message: "Login successful!",
-      user: {
-        id: user._id,
-        username: user.username,
-        email: user.email,
-        age: user.age,
-        gender: user.gender,
-      },
-    });
+
+
+     const token = generateToken(user);
+
+     res.status(200).json({
+       success: true,
+       message: "Login successful!",
+       token: token, // ← SEND TOKEN
+       user: {
+         id: user._id,
+         username: user.username,
+         email: user.email,
+         age: user.age,
+         gender: user.gender,
+         role: user.role
+       },
+     });
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).json({
