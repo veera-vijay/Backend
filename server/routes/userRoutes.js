@@ -1,9 +1,14 @@
 const userController=require("../controller/userController")
 const  express=require("express")
 const router=express.Router();
-const { verifyToken } = require("../utils/jwt"); // ← ADD THIS
+const { generateToken } = require("../utils/jwt"); // ← ADD THIS
 
 router.post("/user-post",userController.createUser)
+router.post("/user-verify-otp", userController.verifyOTP)   //  OTP
+router.post("/user-resend-otp", userController.resendOTP)   //  RESEND OTP
+router.post("/user-forgot-password", userController.forgotPassword);        // Send OTP
+router.post("/user-verify-reset-otp", userController.verifyForgotPasswordOtp); // Verify OTP
+router.post("/user-reset-password", userController.resetPassword);          // Reset password
 router.post("/user-login",userController.login)
 router.post("/user-createbook",userController.book)
 router.get("/user-viewall",userController.viewall)

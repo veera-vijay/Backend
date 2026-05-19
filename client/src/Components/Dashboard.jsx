@@ -25,7 +25,7 @@ const Dashboard = () => {
         <div className="grid md:grid-cols-2 gap-6">
           {/* Books Button */}
           <button
-            onClick={() => navigate("/admin")}
+            onClick={() => navigate("/adminbook")}
             className="group relative cursor-pointer overflow-hidden bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -92,7 +92,7 @@ const Dashboard = () => {
       {/* Back Button - FIXED at bottom-left corner */}
       <button
         onClick={() => navigate("/")}
-        className="fixed top-4 left-4 z-50 inline-flex cursor-pointer items-center gap-2 px-6 py-2 bg-white/60 backdrop-blur-sm text-black rounded-xl hover:bg-white/30 transition-all duration-300 text-sm font-semibold shadow-lg"
+        className="fixed top-4 left-4 z-50 inline-flex cursor-pointer items-center gap-2 px-6 py-2 bg-white/60 backdrop-blur-sm text-black rounded-full hover:bg-white/30 transition-all duration-300 text-sm font-semibold shadow-lg"
       >
         <svg
           className="w-4 h-4"

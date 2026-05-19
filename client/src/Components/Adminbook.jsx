@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const Admin = () => {
+export const Adminbook = () => {
   const navigate = useNavigate();
   const [userRole, setUserRole] = useState(null);
 
@@ -67,7 +67,7 @@ export const Admin = () => {
           {/* Go Back Button */}
           <button
             onClick={() => navigate("/dashboard")}
-            className="fixed top-4 left-4 bg-white/90 backdrop-blur-sm cursor-pointer text-purple-600 font-semibold py-2 px-4 rounded-lg shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
+            className="fixed top-4 left-4 bg-white/90 backdrop-blur-sm cursor-pointer text-purple-600 font-semibold py-2 px-4 rounded-full shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
           >
             <svg
               className="w-4 h-4"
@@ -90,4 +90,4 @@ export const Admin = () => {
   );
 };
 
-export default Admin;
+export default Adminbook;

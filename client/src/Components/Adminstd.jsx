@@ -6,7 +6,6 @@ export const Adminstd = () => {
   const [userRole, setUserRole] = useState(null);
   
     useEffect(() => {
-      // Get user role from localStorage
       const userData = localStorage.getItem("user");
       if (userData) {
         const user = JSON.parse(userData);

@@ -156,6 +156,7 @@ function StdForm() {
               Gender
             </label>
             <div className="flex gap-4">
+              {/* Male - Medium size with Blue accent */}
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="radio"
@@ -164,11 +165,12 @@ function StdForm() {
                   checked={gender === "male"}
                   onChange={(e) => setGender(e.target.value)}
                   disabled={isLoading}
-                  className="w-4 h-4 text-purple-600 focus:ring-purple-500"
+                  className=" text-blue-600 focus:ring-blue-500 focus:ring-offset-0 accent-blue-600"
                 />
                 <span className="text-xs text-gray-700">Male</span>
               </label>
 
+              {/* Female - Medium size with Blue accent */}
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="radio"
@@ -177,11 +179,12 @@ function StdForm() {
                   checked={gender === "female"}
                   onChange={(e) => setGender(e.target.value)}
                   disabled={isLoading}
-                  className="w-4 h-4 text-purple-600 focus:ring-purple-500"
+                  className=" text-blue-600 focus:ring-blue-500 focus:ring-offset-0 accent-blue-600"
                 />
                 <span className="text-xs text-gray-700">Female</span>
               </label>
 
+              {/* Other - Medium size with Blue accent */}
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="radio"
@@ -190,7 +193,7 @@ function StdForm() {
                   checked={gender === "other"}
                   onChange={(e) => setGender(e.target.value)}
                   disabled={isLoading}
-                  className="w-4 h-4 text-purple-600 focus:ring-purple-500"
+                  className=" text-blue-600 focus:ring-blue-500 focus:ring-offset-0 accent-blue-600"
                 />
                 <span className="text-xs text-gray-700">Other</span>
               </label>
@@ -210,7 +213,7 @@ function StdForm() {
       {/* Back Button */}
       <button
         onClick={() => navigate("/adminstd")}
-        className="fixed top-4 left-4 bg-white/90 cursor-pointer backdrop-blur-sm text-purple-600 font-semibold py-1.5 px-3 rounded-lg shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
+        className="fixed top-4 left-4 bg-white/90 cursor-pointer backdrop-blur-sm text-purple-600 font-semibold py-1.5 px-3 rounded-full shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
       >
         <svg
           className="w-3 h-3"

@@ -34,6 +34,16 @@ const userSchema = new mongoose.Schema({
     enum: ["student", "admin"],
     default: "student",
   },
+  otpCode: {
+    type: String,
+    default: null,
+  },
+  otpExpiresAt: {
+    type: Date,
+    default: null,
+  },
+  forgotPasswordOtp: { type: String, default: null },
+  forgotPasswordExpiry: { type: Date, default: null },
 });
 
 module.exports = mongoose.model("User", userSchema);

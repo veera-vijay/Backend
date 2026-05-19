@@ -2,14 +2,16 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './Components/Home';
 import Login from './Components/Login';
+import ForgotPassword from "./components/ForgotPassword";
 import Register from './Components/Register';
-import Admin from"./Components/Admin";
+import Adminbook from"./Components/Adminbook";
 import Adminstd from "./Components/Adminstd";
 import Createbooks from './Components/Createbooks';
 import Viewbooks from './Components/Viewbooks';
 import Dashboard from "./Components/Dashboard";
 import StdForm from "./Components/StdForm";
 import Viewallstd from "./Components/Viewallstd";
+
 function App() {
   return (
     <Router>
@@ -19,11 +21,11 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/" element={<Navigate to="home" />} />
         <Route path="/login" element={<Login />} />
-
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/register" element={<Register />} />
         <Route path="/createbook" element={<Createbooks />} />
         <Route path="/viewbooks" element={<Viewbooks />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/adminbook" element={<Adminbook />} />
         <Route path="/adminstd" element={<Adminstd />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/stdform" element={<StdForm />} />

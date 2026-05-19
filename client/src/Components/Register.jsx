@@ -6,7 +6,6 @@ import Login from "./Login"
 function Register() {
   const [username, setUsername] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [age, setAge] = useState('');
@@ -180,51 +179,57 @@ function Register() {
               />
             </div>
 
-            <div>
-              <label className="block text-gray-600 flex flex-start text-xs font-medium mb-2">
-                Gender
-              </label>
-              <div className="flex gap-4">
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="male"
-                    checked={gender === "male"}
-                    onChange={(e) => setGender(e.target.value)}
-                    disabled={isLoading}
-                    className="w-3 h-3 text-purple-600 focus:ring-purple-500"
-                  />
-                  <span className="text-xs text-gray-700">Male</span>
-                </label>
+           <div>
+  <label className="block text-gray-600 flex flex-start text-xs font-medium mb-2">
+    Gender
+  </label>
+  <div className="flex gap-4">
+    {/* Male - Medium size with Blue accent */}
+    <label className="flex items-center gap-2 cursor-pointer">
+      <input
+        type="radio"
+        name="gender"
+        value="male"
+        checked={gender === "male"}
+        onChange={(e) => setGender(e.target.value)}
+        disabled={isLoading}
+        className=" text-blue-600 focus:ring-blue-500 focus:ring-offset-0 accent-blue-600"
+        
+      />
+      <span className="text-xs text-gray-700">Male</span>
+    </label>
 
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="female"
-                    checked={gender === "female"}
-                    onChange={(e) => setGender(e.target.value)}
-                    disabled={isLoading}
-                    className="w-3 h-3 text-purple-600 focus:ring-purple-500"
-                  />
-                  <span className="text-xs text-gray-700">Female</span>
-                </label>
+    {/* Female - Medium size with Blue accent */}
+    <label className="flex items-center gap-2 cursor-pointer">
+      <input
+        type="radio"
+        name="gender"
+        value="female"
+        checked={gender === "female"}
+        onChange={(e) => setGender(e.target.value)}
+        disabled={isLoading}
+        className=" text-blue-600 focus:ring-blue-500 focus:ring-offset-0 accent-blue-600"
+       
+      />
+      <span className="text-xs text-gray-700">Female</span>
+    </label>
 
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="other"
-                    checked={gender === "other"}
-                    onChange={(e) => setGender(e.target.value)}
-                    disabled={isLoading}
-                    className="w-3 h-3 text-purple-600 focus:ring-purple-500"
-                  />
-                  <span className="text-xs text-gray-700">Other</span>
-                </label>
-              </div>
-            </div>
+    {/* Other - Medium size with Blue accent */}
+    <label className="flex items-center gap-2 cursor-pointer">
+      <input
+        type="radio"
+        name="gender"
+        value="other"
+        checked={gender === "other"}
+        onChange={(e) => setGender(e.target.value)}
+        disabled={isLoading}
+        className=" text-blue-600 focus:ring-blue-500 focus:ring-offset-0 accent-blue-600"
+        
+      />
+      <span className="text-xs text-gray-700">Other</span>
+    </label>
+  </div>
+</div>
           </div>
 
           <button
@@ -251,7 +256,7 @@ function Register() {
 
       <button
         onClick={() => navigate("/Home")}
-        className="fixed top-4 cursor-pointer left-4 bg-white/90 backdrop-blur-sm text-purple-600 font-semibold py-1.5 px-3 rounded-lg shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
+        className="fixed top-4 cursor-pointer left-4 bg-white/90 backdrop-blur-sm text-purple-600 font-semibold py-1.5 px-3 rounded-full shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
       >
         <svg
           className="w-3 h-3"

@@ -195,8 +195,8 @@ const Createbooks = () => {
       </div>
 
       <button
-        onClick={() => navigate("/Admin")}
-        className="fixed top-3 left-3  cursor-pointer bg-white/90 backdrop-blur-sm text-purple-600 font-semibold py-1 px-2.5 rounded-lg shadow-md hover:bg-white text-xs flex items-center gap-1"
+        onClick={() => navigate("/Adminbook")}
+        className="fixed top-3 left-3  cursor-pointer bg-white/90 backdrop-blur-sm text-purple-600 font-semibold py-1 px-2.5 rounded-full shadow-md hover:bg-white text-xs flex items-center gap-1"
       >
         <svg
           className="w-3 h-3"

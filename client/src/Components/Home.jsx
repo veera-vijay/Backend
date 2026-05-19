@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { motion } from "framer-motion";
 const Home = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -125,7 +125,6 @@ const Home = () => {
           </div>
         </div>
       </nav>
-
       {/* Hero Section - This will grow to push footer down */}
       <div className="flex-grow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
@@ -163,16 +162,21 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-      {/* Footer - Will stick to bottom */}
-      <footer className="w-full bg-gray-900/95 backdrop-blur-sm  md:-mt-20">
+     
+      <footer className="w-full bg-gray-900/95 backdrop-blur-sm md:-mt-20">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-2 py-4">
-          <p className="text-white/70 text-sm text-center">
-            © 2024 BookStore. All rights reserved. Made with ❤️ for book lovers.
-          </p>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.50 }}
+          >
+            <p className="text-white/70 text-sm text-center">
+              © 2024 BookStore. All rights reserved. Made with ❤️ for book
+              lovers.
+            </p>
+          </motion.div>
         </div>
       </footer>
-
       <style jsx>{`
         @keyframes fadeIn {
           from {
