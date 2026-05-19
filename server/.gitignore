@@ -1,5 +1,5 @@
 # ========== ENVIRONMENT VARIABLES ==========
-.env copy
+.env 
 .env.local
 .env.production
 .env.development
