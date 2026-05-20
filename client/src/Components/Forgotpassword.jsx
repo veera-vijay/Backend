@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { HiLockClosed } from "react-icons/hi";
 const ForgotPassword = () => {
   const navigate = useNavigate();
-  const [step, setStep] = useState(1); // 1=email, 2=otp, 3=newpass
+  const [step, setStep] = useState(1); // 1=email, 2=otp, 3=newpassword
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -31,7 +31,11 @@ const ForgotPassword = () => {
     const secs = seconds % 60;
     return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
-
+  const getTimerColor = () => {
+    if (timeLeft <= 10) return "text-red-600 font-bold";
+    if (timeLeft <= 20) return "text-orange-500";
+    return "text-green-600";
+  };
   // Step 1: Send OTP
   const handleSendOTP = async (e) => {
     e.preventDefault();
@@ -46,9 +50,10 @@ const ForgotPassword = () => {
       );
 
       if (response.data.success) {
-        setMessage("✅ OTP sent to your email!");
-        setTimeLeft(600); // 10 minutes
+        setMessage(" OTP sent to your email!");
+        setTimeLeft(30); // 30s
         setCanResend(false);
+         setOtp(" ");
         setStep(2);
       }
     } catch (err) {
@@ -121,13 +126,13 @@ const ForgotPassword = () => {
       );
 
       if (response.data.success) {
-        setMessage("✅ Password reset successful! Redirecting to login...");
+        setMessage(" Password reset successful! Redirecting to login...");
         setTimeout(() => {
           navigate("/login");
         }, 2000);
       }
     } catch (err) {
-      setError(err.response?.data?.message || "❌ Failed to reset password");
+      setError(err.response?.data?.message || "Failed to reset password");
     } finally {
       setIsLoading(false);
     }
@@ -145,12 +150,12 @@ const ForgotPassword = () => {
       );
 
       if (response.data.success) {
-        setMessage("✅ New OTP sent!");
+        setMessage(" New OTP sent!");
         setTimeLeft(30);
         setCanResend(false);
       }
     } catch (err) {
-      setError("❌ Failed to resend OTP");
+      setError(" Failed to resend OTP");
     } finally {
       setIsLoading(false);
     }
@@ -159,18 +164,15 @@ const ForgotPassword = () => {
   // ========== STEP 1: EMAIL FORM ==========
   if (step === 1) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8">
-          <div className="text-center mb-6">
-            <div className="text-6xl mb-3">🔐</div>
-            <h2 className="text-2xl font-bold text-gray-800">
-              Forgot Password?
-            </h2>
-            <p className="text-gray-500 text-sm mt-2">
-              Enter your email to receive OTP
-            </p>
-          </div>
-
+ <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8">
+     <div className="text-center mb-6">
+  <HiLockClosed className="text-5xl text-violet-600 mx-auto mb-3" />
+  <b className="text-2xl font-bold text-violet-600 block">
+    Forgot Password?
+  </b>
+  
+</div>
           {error && (
             <div className="mb-4 p-3 rounded-lg text-center text-sm bg-red-100 text-red-700 border border-red-200">
               {error}
@@ -185,7 +187,7 @@ const ForgotPassword = () => {
 
           <form onSubmit={handleSendOTP}>
             <div className="mb-4">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm">
+              <label className="block flex flex-start text-gray-700 font-semibold mb-2 text-sm">
                 Email Address
               </label>
               <input
@@ -194,7 +196,7 @@ const ForgotPassword = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-500 transition"
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-500 transition text-black text-sm "
                 autoFocus
               />
             </div>
@@ -272,7 +274,7 @@ const ForgotPassword = () => {
 
           <form onSubmit={handleVerifyOTP}>
             <div className="mb-4">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm">
+              <label className="block flex flex-start text-gray-700 font-semibold mb-2 text-sm">
                 OTP Code
               </label>
               <input
@@ -290,9 +292,9 @@ const ForgotPassword = () => {
               {!canResend ? (
                 <p className="text-sm text-gray-600">
                   OTP expires in:{" "}
-                  <span className="font-bold text-red-600">
-                    {formatTime(timeLeft)}
-                  </span>
+                   <span className={`font-bold ${getTimerColor()}`}>
+                {formatTime(timeLeft)}
+              </span>
                 </p>
               ) : (
                 <p className="text-sm text-red-600">
@@ -338,7 +340,7 @@ const ForgotPassword = () => {
       <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8">
         <div className="text-center mb-6">
           <div className="text-6xl mb-3">🔐</div>
-          <h2 className="text-2xl font-bold text-gray-800">Reset Password</h2>
+          <h2 className="text-2xl font-bold text-violet-800">Reset Password</h2>
           <p className="text-gray-500 text-sm mt-2">Enter your new password</p>
         </div>
 
@@ -356,7 +358,7 @@ const ForgotPassword = () => {
 
         <form onSubmit={handleResetPassword}>
           <div className="mb-4">
-            <label className="block text-gray-700 font-semibold mb-2 text-sm">
+            <label className="block flex flex-start   text-gray-700 font-semibold mb-2 text-sm">
               New Password
             </label>
             <div className="relative">
@@ -413,7 +415,7 @@ const ForgotPassword = () => {
           </div>
 
           <div className="mb-6">
-            <label className="block text-gray-700 font-semibold mb-2 text-sm">
+            <label className="block flex flex-start text-gray-700 font-semibold mb-2 text-sm">
               Confirm Password
             </label>
             <input

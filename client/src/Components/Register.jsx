@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Login from "./Login"
 
 function Register() {
   const [username, setUsername] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState(''); // Email validation error
   const [password, setPassword] = useState('');
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
@@ -14,10 +14,35 @@ function Register() {
   const [msg, setMsg] = useState('');
   const navigate = useNavigate();
 
+  // Email validation function
+  const validateEmail = (email) => {
+    const emailRegex = (/^[a-z]+[\d]+@[a-z]+.com$/);
+    return emailRegex.test(email);
+  };
+
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+    
+    // Real-time email validation
+    if (value && !validateEmail(value)) {
+      setEmailError('Please enter a valid email address (e.g., name@example.com)');
+    } else {
+      setEmailError('');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setMsg('');
+
+    // Validate email before submission
+    if (!validateEmail(email)) {
+      setMsg({ type: 'error', text: 'Please enter a valid email address!' });
+      setIsLoading(false);
+      return;
+    }
 
     try {
       const response = await axios.post('http://localhost:5000/api/user-post', {
@@ -27,20 +52,23 @@ function Register() {
         age,
         gender
       });
-        if (response.data.token) {
-          localStorage.setItem("token", response.data.token);
-          localStorage.setItem("user", JSON.stringify(response.data.user));
-          console.log("Token saved from registration:", response.data.token);
-        }
+      
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        console.log("Token saved from registration:", response.data.token);
+      }
+      
       setMsg({ type: 'success', text: 'Registration successful!' });
       setUsername('');
       setEmail('');
       setPassword('');
       setAge('');
       setGender('');
-       setTimeout(() => {
+      
+      setTimeout(() => {
         navigate('/Login');
-       }, 1500);
+      }, 1500);
     } catch (error) {
       setMsg({ type: 'error', text: error.response?.data?.message || 'Registration failed' });
       setTimeout(() => setMsg(''), 2000);
@@ -51,8 +79,9 @@ function Register() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center p-3">
-      <div className="bg-white rounded-lg shadow-lg p-4 w-full max-w-[350px] sm:max-w-sm">
+      <div className="bg-white rounded-lg shadow-lg p-4 w-full max-w-[350px] md:max-w-md sm:mt-6">
         <div className="text-center mb-3">
+          
           <i className="text-base font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
             Create Account
           </i>
@@ -87,18 +116,25 @@ function Register() {
           </div>
 
           <div>
-            <label className="block flex flex-start text-gray-600 text-xs font-medium mb-0.5 ">
-              Email
+            <label className="block flex flex-start text-gray-600 text-xs font-medium mb-0.5">
+              Email 
             </label>
             <input
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:border-purple-500 font-medium text-black text-xs"
-              placeholder="Enter email"
+              onChange={handleEmailChange}
+              className={`w-full px-2 py-1 border rounded focus:outline-none focus:border-purple-500 font-medium text-black text-xs ${
+                emailError ? 'border-red-500' : 'border-gray-300'
+              }`}
+              placeholder="Enter email "
               required
               disabled={isLoading}
             />
+            {emailError && (
+              <p className="text-red-500 text-xs mt-1">
+                {emailError}
+              </p>
+            )}
           </div>
 
           <div>
@@ -116,14 +152,12 @@ function Register() {
                 disabled={isLoading}
               />
 
-              {/* Eye Icon Toggle */}
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-2 cursor-pointer flex items-center cursor-pointer focus:outline-none"
+                className="absolute inset-y-0 right-0 pr-2 cursor-pointer flex items-center focus:outline-none"
               >
                 {showPassword ? (
-                  // Eye Open - Password Visible
                   <svg
                     className="h-3.5 w-3.5 text-gray-400 hover:text-purple-600 transition"
                     fill="none"
@@ -144,7 +178,6 @@ function Register() {
                     />
                   </svg>
                 ) : (
-                  // Eye Closed - Password Hidden
                   <svg
                     className="h-3.5 w-3.5 text-gray-400 hover:text-purple-600 transition"
                     fill="none"
@@ -176,65 +209,61 @@ function Register() {
                 placeholder="Age"
                 required
                 disabled={isLoading}
+                min="1"
+                max="120"
               />
             </div>
 
-           <div>
-  <label className="block text-gray-600 flex flex-start text-xs font-medium mb-2">
-    Gender
-  </label>
-  <div className="flex gap-4">
-    {/* Male - Medium size with Blue accent */}
-    <label className="flex items-center gap-2 cursor-pointer">
-      <input
-        type="radio"
-        name="gender"
-        value="male"
-        checked={gender === "male"}
-        onChange={(e) => setGender(e.target.value)}
-        disabled={isLoading}
-        className=" text-blue-600 focus:ring-blue-500 focus:ring-offset-0 accent-blue-600"
-        
-      />
-      <span className="text-xs text-gray-700">Male</span>
-    </label>
+            <div>
+              <label className="block text-gray-600 flex flex-start text-xs font-medium mb-2">
+                Gender
+              </label>
+              <div className="flex gap-4">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    checked={gender === "male"}
+                    onChange={(e) => setGender(e.target.value)}
+                    disabled={isLoading}
+                    className="text-blue-600 focus:ring-blue-500 focus:ring-offset-0 accent-blue-600"
+                  />
+                  <span className="text-xs text-gray-700">Male</span>
+                </label>
 
-    {/* Female - Medium size with Blue accent */}
-    <label className="flex items-center gap-2 cursor-pointer">
-      <input
-        type="radio"
-        name="gender"
-        value="female"
-        checked={gender === "female"}
-        onChange={(e) => setGender(e.target.value)}
-        disabled={isLoading}
-        className=" text-blue-600 focus:ring-blue-500 focus:ring-offset-0 accent-blue-600"
-       
-      />
-      <span className="text-xs text-gray-700">Female</span>
-    </label>
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    checked={gender === "female"}
+                    onChange={(e) => setGender(e.target.value)}
+                    disabled={isLoading}
+                    className="text-blue-600 focus:ring-blue-500 focus:ring-offset-0 accent-blue-600"
+                  />
+                  <span className="text-xs text-gray-700">Female</span>
+                </label>
 
-    {/* Other - Medium size with Blue accent */}
-    <label className="flex items-center gap-2 cursor-pointer">
-      <input
-        type="radio"
-        name="gender"
-        value="other"
-        checked={gender === "other"}
-        onChange={(e) => setGender(e.target.value)}
-        disabled={isLoading}
-        className=" text-blue-600 focus:ring-blue-500 focus:ring-offset-0 accent-blue-600"
-        
-      />
-      <span className="text-xs text-gray-700">Other</span>
-    </label>
-  </div>
-</div>
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="other"
+                    checked={gender === "other"}
+                    onChange={(e) => setGender(e.target.value)}
+                    disabled={isLoading}
+                    className="text-blue-600 focus:ring-blue-500 focus:ring-offset-0 accent-blue-600"
+                  />
+                  <span className="text-xs text-gray-700">Other</span>
+                </label>
+              </div>
+            </div>
           </div>
 
           <button
             type="submit"
-            disabled={isLoading}
+            disabled={isLoading || !!emailError}
             className="w-full bg-gradient-to-r cursor-pointer from-purple-600 to-indigo-600 text-white font-semibold py-1.5 rounded transition-opacity hover:opacity-90 text-sm mt-1 disabled:opacity-50"
           >
             {isLoading ? "Registering..." : "Submit"}
