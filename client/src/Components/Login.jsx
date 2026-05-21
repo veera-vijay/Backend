@@ -146,9 +146,8 @@ export const Login = () => {
         setMsg({ type: "success", text: "Login successful! Redirecting..." });
 
         setTimeout(() => {
-          if (role === "admin") {
-            navigate("/admin");
-          } else {
+          if (role === "admin"|| role==="student") 
+            {
             navigate("/dashboard");
           }
         }, 1000);
@@ -315,7 +314,7 @@ export const Login = () => {
   // ========== LOGIN SCREEN ==========
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl p-6 w-full max-w-md">
+      <div className="bg-white rounded-2xl shadow-2xl p-6 w-full max-w-md ">
         <div className="text-center mb-6">
           <div className="flex items-center justify-center mb-3">
             <div className="bg-gradient-to-br from-purple-500 to-indigo-600 w-14 h-14 rounded-xl flex items-center justify-center shadow-md">
@@ -340,7 +339,9 @@ export const Login = () => {
             }`}
           >
             {msg.type === "success" && <FaCheckCircle className="w-4 h-4" />}
-            {msg.type === "error" && <FaExclamationCircle className="w-4 h-4" />}
+            {msg.type === "error" && (
+              <FaExclamationCircle className="w-4 h-4" />
+            )}
             <span>{msg.text}</span>
           </div>
         )}
@@ -410,7 +411,10 @@ export const Login = () => {
 
           <div className="flex justify-between items-center">
             <label className="flex items-center cursor-pointer">
-              <input type="checkbox" className="w-3 h-3 rounded cursor-pointer" />
+              <input
+                type="checkbox"
+                className="w-3 h-3 rounded cursor-pointer"
+              />
               <span className="ml-1 text-xs text-gray-600">Remember me</span>
             </label>
             <button
@@ -429,9 +433,24 @@ export const Login = () => {
           >
             {isLoading ? (
               <span className="flex items-center justify-center gap-2">
-                <svg className="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                <svg
+                  className="animate-spin h-4 w-4 text-white"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                    fill="none"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                  />
                 </svg>
                 Sending OTP...
               </span>
@@ -457,10 +476,20 @@ export const Login = () => {
       {/* Back to Home Button */}
       <button
         onClick={() => navigate("/Home")}
-        className="fixed top-4 left-4 bg-white/90 backdrop-blur-sm text-purple-600 font-semibold py-1.5 px-3 rounded-full shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm z-50"
+        className="fixed top-1  left-4 bg-white/90 backdrop-blur-sm text-purple-600 font-semibold py-1.5 px-3 rounded-full shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm z-50"
       >
-        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        <svg
+          className="w-3 h-3"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"
+          />
         </svg>
         Back
       </button>

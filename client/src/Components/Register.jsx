@@ -101,7 +101,7 @@ function Register() {
 
         <form onSubmit={handleSubmit} className="space-y-2">
           <div>
-            <label className="block flex flex-start text-gray-600 text-xs font-medium mb-0.5">
+            <label className="block flex flex-start text-gray-400 text-xs font-medium mb-0.5">
               Username
             </label>
             <input
@@ -116,7 +116,7 @@ function Register() {
           </div>
 
           <div>
-            <label className="block flex flex-start text-gray-600 text-xs font-medium mb-0.5">
+            <label className="block flex flex-start text-gray-400 text-xs font-medium mb-0.5">
               Email 
             </label>
             <input
@@ -138,7 +138,7 @@ function Register() {
           </div>
 
           <div>
-            <label className="flex flex-start text-gray-600 text-xs font-medium mb-0.5">
+            <label className="flex flex-start text-gray-400 text-xs font-medium mb-0.5">
               Password
             </label>
             <div className="relative">
@@ -198,7 +198,7 @@ function Register() {
 
           <div className="flex flex-col gap-2">
             <div className="flex-1">
-              <label className="block flex flex-start text-gray-600 text-xs font-medium mb-0.5">
+              <label className="block flex flex-start text-gray-400 text-xs font-medium mb-0.5">
                 Age
               </label>
               <input
@@ -215,7 +215,7 @@ function Register() {
             </div>
 
             <div>
-              <label className="block text-gray-600 flex flex-start text-xs font-medium mb-2">
+              <label className="block text-gray-400 flex flex-start text-xs font-medium mb-2">
                 Gender
               </label>
               <div className="flex gap-4">

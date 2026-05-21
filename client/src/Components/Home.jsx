@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { HiHome } from "react-icons/hi";
 import { FaSignInAlt } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa";
+import {  MdAutoStories  } from "react-icons/md";
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -24,7 +26,9 @@ const Home = () => {
               className="flex items-center space-x-2 cursor-pointer"
               onClick={() => navigate("/")}
             >
-              <span className="text-2xl">📚</span>
+              <span className="text-2xl">             
+                   <MdAutoStories className="text-6xl text-white" />
+              </span>
               <span className="text-white font-bold text-xl">BookStore</span>
             </div>
 

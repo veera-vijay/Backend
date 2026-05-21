@@ -1,7 +1,26 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import {
+  FaUserGraduate,
+  FaChalkboardTeacher,
+  FaUniversity,
+  FaSchool,
+  FaTrash,
+} from "react-icons/fa";
+import {
+  MdCalendarToday,
+  MdDriveFileRenameOutline,
+  MdEdit,
+  MdSave,
+  MdSaveAlt,
+  MdCloudUpload,
+  MdMenuBook,
+  MdAutoStories,
+  MdAdd,
+  MdLibraryBooks,
+  MdWarning,
+} from "react-icons/md";
 export const Viewallstd = () => {
   const [student, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -56,7 +75,7 @@ const [userRole, setUserRole] = useState(null);
       name: std.name || "",
       email: std.email || "",
       course: std.course || "",
-      age: std.age || "",
+      age: std.age || 0,
       gender: std.gender || "",
     });
   };
@@ -94,7 +113,7 @@ const [userRole, setUserRole] = useState(null);
       console.log("Update response:", response.data);
       setMessage({
         type: "success",
-        text: "✅ Student updated successfully!",
+        text: " Student updated successfully!",
       });
 
       setStudents(
@@ -111,7 +130,7 @@ const [userRole, setUserRole] = useState(null);
       console.error("Update error:", err);
       setMessage({
         type: "error",
-        text: err.response?.data?.message || "❌ Failed to update student",
+        text: err.response?.data?.message || " Failed to update student",
       });
     } finally {
       setUpdating(false);
@@ -138,7 +157,7 @@ const [userRole, setUserRole] = useState(null);
     } catch (err) {
       setMessage({
         type: "error",
-        text: err.response?.data?.message || "❌ Failed to delete student",
+        text: err.response?.data?.message || " Failed to delete student",
       });
     } finally {
       setDeleting(false);
@@ -173,11 +192,13 @@ const [userRole, setUserRole] = useState(null);
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-8">
-            <div className="inline-flex justify-center items-center gap-2 bg-white shadow-md rounded-full px-6 py-2 mb-3 h-15 w-full">
-              {/* <span className="text-2xl">👨‍🎓</span> */}
-              <b className="text-xl font-bold text-black">Student Records</b>
-            </div>
-            <p className="text-gray-600 text-sm">
+           <div className="flex items-center justify-center gap-3 bg-white shadow-md rounded-full px-6 py-3 w-full max-w-md mx-auto">
+                <FaUserGraduate className="text-4xl text-blue-300" /> 
+                           <b className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                          Students collections
+                           </b>
+                         </div>
+            <p className="text-green-600 text-sm mt-6! font-bold!">
               {student.length} students enrolled
             </p>
           </div>
@@ -231,7 +252,9 @@ const [userRole, setUserRole] = useState(null);
                           <div
                             className={`w-14 h-14 rounded-full flex items-center justify-center bg-gradient-to-r ${getGradientClass(index)}`}
                           >
-                            <span className="text-2xl text-white">👨‍🎓</span>
+                            <span className="text-2xl text-white">
+                              <FaUserGraduate className="text-3xl text-white" />
+                            </span>
                           </div>
                         </div>
 
@@ -294,18 +317,20 @@ const [userRole, setUserRole] = useState(null);
 
                         {/* Action Buttons */}
                         {userRole === "admin" && (
-                          <div className="flex gap-2 mt-4 pt-2 border-t border-gray-100">
+                          <div className="flex gap-2 mt-4 pt-2 border-t justify-center items-center border-gray-100">
                             <button
                               onClick={() => openEditModal(user)}
-                              className="flex-1 bg-yellow-500 cursor-pointer hover:bg-yellow-600 text-white text-xs font-semibold py-2 rounded-lg transition duration-300"
+                              className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white text-xs font-semibold py-2 px-4 rounded-lg transition duration-300"
                             >
-                              ✏️ Edit
+                              <MdEdit className="text-sm text-white" />
+                              Edit
                             </button>
                             <button
                               onClick={() => openDeleteModal(user)}
-                              className="flex-1 bg-red-500 cursor-pointer hover:bg-red-600 text-white text-xs font-semibold py-2 rounded-lg transition duration-300"
+                              className="flex bg-red-500 py-2 px-2 cursor-pointer hover:bg-red-600 text-white text-xs font-semibold py-2 rounded-lg transition duration-300 flex items-center justify-center gap-2"
                             >
-                              🗑️ Delete
+                              <FaTrash className="text-sm text-white" />
+                              Delete
                             </button>
                           </div>
                         )}
@@ -321,7 +346,7 @@ const [userRole, setUserRole] = useState(null);
           {userRole === "admin" && (
             <button
               onClick={() => navigate("/stdform")}
-              className="fixed top-4 cursor-pointer left-4 bg-white/90 backdrop-blur-sm text-purple-600 font-semibold py-1.5 px-3 rounded-lg shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
+              className="fixed top-4 cursor-pointer left-4 bg-white/90 backdrop-blur-sm text-purple-600 font-semibold py-1.5 px-3 rounded-full bg-gray-300shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
             >
               <svg
                 className="w-3 h-3"
@@ -346,9 +371,10 @@ const [userRole, setUserRole] = useState(null);
       {editingstd && (
         <div className="fixed inset-0 bg-white/50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-2xl max-w-md w-full">
-            <div className="bg-gradient-to-r from-yellow-500 to-amber-500 px-4 py-3 rounded-t-xl">
-              <h3 className="text-white font-semibold">✏️ Edit Student</h3>
-              <p className="text-yellow-100 text-xs">Update student details</p>
+            <div className=" flex justify-center gap-2 items-center bg-gradient-to-r from-yellow-500 to-amber-500 px-4 py-3 rounded-t-xl">
+              <MdEdit className="text-1xl text-white" />
+
+              <h3 className="text-yellow-100 ">Update student details</h3>
             </div>
 
             <div className="p-5">
@@ -465,9 +491,16 @@ const [userRole, setUserRole] = useState(null);
                 <button
                   onClick={saveEdit}
                   disabled={updating}
-                  className="flex-1 bg-green-600 hover:bg-green-700 cursor-pointer text-white text-sm font-semibold py-2 rounded-lg transition"
+                  className="flex-1 bg-green-600 flex items-center justify-center gap-2 hover:bg-green-700 cursor-pointer text-white text-sm font-semibold py-2 rounded-lg transition"
                 >
-                  {updating ? "Saving..." : "💾 Save Changes"}
+                  {updating ? (
+                    "Saving..."
+                  ) : (
+                    <>
+                      <MdSave className="text-xl" />
+                      Save Changes
+                    </>
+                  )}
                 </button>
                 <button
                   onClick={closeModals}
@@ -485,12 +518,17 @@ const [userRole, setUserRole] = useState(null);
       {deletingstd && (
         <div className="fixed inset-0 bg-white/50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-2xl max-w-sm w-full">
-            <div className="bg-gradient-to-r from-red-600 to-red-500 px-4 py-3 rounded-t-xl">
-              <h3 className="text-white font-semibold">⚠️ Confirm Delete</h3>
+            <div className=" flex justify-center items-center gap-1 bg-gradient-to-r from-red-600 to-red-500 px-4 py-3 rounded-t-xl">
+              <MdWarning className="text-2xl text-yellow-300" />
+
+              <h3 className="text-white font-semibold">Confirm Delete</h3>
             </div>
 
             <div className="p-5 text-center">
-              <div className="text-5xl mb-3">⚠️</div>
+              <div className=" flex justify-center items-center text-5xl mb-3">
+              
+                <MdWarning className="text-5xl text-yellow-500" />
+              </div>
               <p className="text-sm text-gray-700 mb-2">
                 Are you sure you want to delete <br />
                 <strong className="text-red-600 text-base">

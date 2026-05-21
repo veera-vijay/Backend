@@ -1,5 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { MdMenuBook } from "react-icons/md";
+
+
+import {
+  FaUserGraduate,
+  FaChalkboardTeacher,
+  FaUniversity,
+  FaSchool,
+} from "react-icons/fa";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -26,18 +35,25 @@ const Dashboard = () => {
           {/* Books Button */}
           <button
             onClick={() => navigate("/adminbook")}
-            className="group relative cursor-pointer overflow-hidden bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl"
+            className="group relative cursor-pointer overflow-hidden bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl w-full flex flex-col items-center justify-center"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div className="relative z-10">
-              <div className="text-6xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                📖
+            <div className="relative z-10 flex flex-col items-center justify-center">
+              {/* Icon - Centered */}
+              <div className="flex items-center justify-center mb-4">
+                <MdMenuBook className="text-6xl text-white transform group-hover:scale-110 transition-transform duration-300" />
               </div>
+
+              {/* Title */}
               <h2 className="text-2xl font-bold text-white mb-2">Books</h2>
-              <p className="text-white/80 text-sm">
+
+              {/* Description */}
+              <p className="text-white/80 text-sm text-center">
                 Manage your book collection
               </p>
-              <div className="mt-4 inline-flex cursor-pointer items-center text-white text-sm font-semibold">
+
+              {/* Button Link */}
+              <div className="mt-4 inline-flex items-center text-white text-sm font-semibold">
                 Go to Books
                 <svg
                   className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
@@ -63,8 +79,10 @@ const Dashboard = () => {
           >
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="relative z-10">
-              <div className="text-6xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                👨‍🎓
+              <div className="text-6xl flex justify-center mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                <FaUserGraduate className="text-6xl text-white" /> 
+                
+               
               </div>
               <h2 className="text-2xl font-bold text-white mb-2">Students</h2>
               <p className="text-white/80 text-sm">Manage student records</p>

@@ -340,7 +340,7 @@ const ForgotPassword = () => {
       <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8">
         <div className="text-center mb-6">
           <div className="text-6xl mb-3">🔐</div>
-          <h2 className="text-2xl font-bold text-violet-800">Reset Password</h2>
+          <b className="text-2xl font-bold text-violet-800">Reset Password</b>
           <p className="text-gray-500 text-sm mt-2">Enter your new password</p>
         </div>
 

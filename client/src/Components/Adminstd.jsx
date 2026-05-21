@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  FaUserGraduate,
+  FaChalkboardTeacher,
+  FaUniversity,
+  FaSchool,
+} from "react-icons/fa";
+import {  MdGroupAdd } from "react-icons/md";
 
 export const Adminstd = () => {
   const navigate = useNavigate();
@@ -22,40 +29,67 @@ export const Adminstd = () => {
           {/* Header Section */}
           <div className="text-center mb-8 sm:mb-12">
             <div className="inline-block bg-white/80 backdrop-blur-sm rounded-full px-6 py-2 mb-4">
-              <span className="text-3xl">👨‍🎓</span>
+              <FaUserGraduate className="text-6xl text-blue-400" />
             </div>
-            <b className="text-2xl sm:text-3xl md:text-4xl font-bold text-black block">
+            <b className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-900 via-gray-600 to-gray-300 bg-clip-text text-transparent block">
               Admin Dashboard
             </b>
-            <p className="text-gray-600 text-sm sm:text-base mt-3 sm:mt-4">
+            <p className="text-gray-600 text-sm sm:text-base mt-4! sm:mt-4">
               Manage Student Records
             </p>
           </div>
 
           {/* Student Details Card */}
           <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 mb-6">
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6 text-center border-b-2 border-gray-200 pb-3">
-              👨‍🎓 Student Management
-            </h3>
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <FaUserGraduate className="text-3xl text-red-400" />
+
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-800">
+                Student Management
+              </h3>
+            </div>
+            <div className="border-t-2 my-3 border-dashed   "></div>
 
             {/* Buttons in ONE LINE - FIXED */}
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               {/* Create Button */}
-              {userRole === "admin" &&(
-              <button
-                onClick={() => navigate("/stdform")}
-                className="w-full sm:w-auto bg-green-500 cursor-pointer hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
-              >
-                <span className="text-xl">✨</span>
-                <span>Create Student</span>
-              </button>
+              {userRole === "admin" && (
+                <button
+                  onClick={() => navigate("/stdform")}
+                  className="w-full sm:w-auto bg-gradient-to-r from-pink-900 via-pink-700 to-pink-400 hover:from-pink-300  hover:to-pink-900 cursor-pointer text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                >
+                  <div className="flex items-center gap-2">
+                    <div className=" rounded-full">
+                      <MdGroupAdd className="text-3xl text-white" />
+                    </div>
+                    <h5 className="text-white font-medium">Create students</h5>
+                  </div>
+                </button>
               )}
               {/* View All Button */}
               <button
                 onClick={() => navigate("/viewallstd")}
-                className="w-full sm:w-auto bg-purple-500 cursor-pointer hover:bg-purple-600 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                className="w-full sm:w-auto bg-gradient-to-r from-green-900 via-green-600 to-green-400 hover:from-green-600 hover:to-green-700 cursor-pointer text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
               >
-                <span className="text-xl">👁️</span>
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
                 <span>View All Students</span>
               </button>
             </div>
@@ -64,7 +98,7 @@ export const Adminstd = () => {
           {/* Go Back Button */}
           <button
             onClick={() => navigate("/dashboard")}
-            className="fixed top-4 left-4 bg-white/90 backdrop-blur-sm cursor-pointer text-purple-600 font-semibold py-2 px-4 rounded-lg shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
+            className="fixed top-4 left-4 bg-white/90 backdrop-blur-sm cursor-pointer text-purple-600 font-semibold py-2 px-4  shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm rounded-full"
           >
             <svg
               className="w-4 h-4"
