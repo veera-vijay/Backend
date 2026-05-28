@@ -53,7 +53,7 @@ const ForgotPassword = () => {
         setMessage(" OTP sent to your email!");
         setTimeLeft(30); // 30s
         setCanResend(false);
-         setOtp(" ");
+         setOtp("");
         setStep(2);
       }
     } catch (err) {
@@ -160,7 +160,7 @@ const ForgotPassword = () => {
       setIsLoading(false);
     }
   };
-
+console.log("🔍Current step value:", step);  
   // ========== STEP 1: EMAIL FORM ==========
   if (step === 1) {
     return (
@@ -249,12 +249,12 @@ const ForgotPassword = () => {
   // ========== STEP 2: OTP FORM ==========
   if (step === 2) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600 flex items-center justify-center p-4">
+      <div className="min-h-screen  bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600 flex items-center justify-center p-4">
         <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8">
           <div className="text-center mb-6">
             <div className="text-6xl mb-3">📧</div>
-            <h2 className="text-2xl font-bold text-gray-800">Verify OTP</h2>
-            <p className="text-gray-500 text-sm mt-2">
+            < i className="text-2xl font-bold mb-3 text-black">Verify OTP</i>
+            <p className="text-gray-500 text-sm mt-4">
               Enter the 4-digit code sent to <br />
               <strong className="text-purple-600">{email}</strong>
             </p>
@@ -283,7 +283,7 @@ const ForgotPassword = () => {
                 placeholder="0000"
                 value={otp}
                 onChange={(e) => setOtp(e.target.value.replace(/[^0-9]/g, ""))}
-                className="w-full text-center text-3xl tracking-widest border-2 border-gray-200 rounded-lg py-4 focus:outline-none focus:border-purple-500 transition"
+                className="w-full text-center text-2xl tracking-widest border-2 border-gray-200 rounded-full py-4 focus:outline-none focus:border-purple-500 transition"
                 autoFocus
               />
             </div>

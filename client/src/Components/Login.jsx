@@ -10,6 +10,7 @@ import axios from "axios";
 
 export const Login = () => {
   const navigate = useNavigate();
+    const [isChecking, setIsChecking] = useState(true);
 
   // Login form states
   const [user, setUser] = useState("");
@@ -27,6 +28,22 @@ export const Login = () => {
   // Timer state
   const [timeLeft, setTimeLeft] = useState(30);
   const [canResend, setCanResend] = useState(false);
+
+
+
+  useEffect(() => {
+    // Check if user is already logged in
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+
+    
+      if (token && user) {
+        navigate("/dashboard");
+      }
+    
+    setIsChecking(false);
+  }, [navigate]);
+
 
   // Timer effect
   useEffect(() => {
@@ -140,14 +157,13 @@ export const Login = () => {
       if (response.data.success) {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
-        
+localStorage.setItem("loginTime", Date.now().toString());
 
         const role = response.data.user?.role;
         setMsg({ type: "success", text: "Login successful! Redirecting..." });
 
         setTimeout(() => {
-          if (role === "admin"|| role==="student") 
-            {
+          if (role === "admin" || role === "student") {
             navigate("/dashboard");
           }
         }, 1000);
@@ -196,6 +212,14 @@ export const Login = () => {
     }
   };
 
+  // Show loading while checking
+  if (isChecking) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+      </div>
+    );
+  }
   // ========== OTP SCREEN ==========
   if (step === "otp") {
     return (
@@ -348,7 +372,7 @@ export const Login = () => {
 
         <form onSubmit={handleSubmit} className="space-y-3">
           <div>
-            <label className="block flex flex-start text-gray-700 font-semibold mb-1 text-xs">
+            <label className="block flex flex-start text-gray-700 font-medium mb-1 text-xs">
               Username
             </label>
             <div className="group relative">
@@ -357,7 +381,7 @@ export const Login = () => {
                 type="text"
                 value={user}
                 onChange={(e) => setUser(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all text-sm text-gray-700"
+                className="w-full pl-9 pr-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all text-xs font-medium text-black"
                 placeholder="Enter your username"
                 disabled={isLoading}
                 autoFocus
@@ -375,7 +399,7 @@ export const Login = () => {
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-9 pr-10 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all text-sm text-gray-700"
+                className="w-full pl-9 pr-10 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all text-xs font-medium text-black"
                 placeholder="Enter your password"
               />
               <button

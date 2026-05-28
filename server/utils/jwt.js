@@ -9,14 +9,28 @@ const generateToken = (user) => {
     id: user._id,
     username: user.username,
     email: user.email,
-     role: user.role 
+     role: user.role ,
+       timestamp: Date.now() 
   };
+  
+  const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "10s" });
 
-  const token = jwt.sign(
-    payload, // payload
-    JWT_SECRET, // secret key
-    { expiresIn: "7d" }, // expires in 7 days
-  );
+ const decoded = jwt.decode(token);
+  const now = Date.now();
+  const expiresAt = decoded.exp * 1000;
+  
+  console.log("\n🔐 TOKEN CREATED:");
+  console.log("   Created:", new Date(decoded.timestamp).toLocaleTimeString());
+  console.log("   Expires:", new Date(expiresAt).toLocaleTimeString());
+  console.log("   Duration:", (expiresAt - decoded.timestamp) / 1000, "seconds");
+  console.log("   Current time:", new Date(now).toLocaleTimeString());
+  
+  if (expiresAt < now) {
+    console.log("   ⚠️ WARNING: Token already expired!");
+  } else {
+    console.log("   ✅ Token valid for", (expiresAt - now) / 1000, "more seconds");
+  }
+  console.log("");
 
   return token;
 };

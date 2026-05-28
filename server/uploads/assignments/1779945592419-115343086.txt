@@ -1,0 +1,299 @@
+WRITE A QUERY TO DISPLAY NAME OF EMPOYEE IF THE EMPLOYEE START AND END WITH SAME LETTER ? 
+
+
+SQL> SELECT *
+  2  FROM EMP WHERE(SUBSTR(ENAME,1,1))=SUBSTR(ENAME,-1,1);
+
+       EID ENAME                JOB                  HIREDATE         SAL GENDER         DNO        COM        MGR
+---------- -------------------- -------------------- --------- ---------- ------- ---------- -------
+      8646 GOLDBERG             WWE                  01-JAN-00      11000 MALE            30        400       8736
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+SQL> SELECT SUBSTR('VIJAY',1,3) FROM DUAL;
+
+SUB
+---
+VIJ
+
+
+SQL> SELECT SUBSTR(ENAME,2,3) FROM EMP;
+
+SUB
+---
+ROC
+ENA
+EAN
+EEP
+OLD
+ANE
+AND
+OLL
+OMA
+ASI
+EER
+IJA
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END EXAMPLE OF SUBSTR>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+SQL> 
+SQL> SELECT LOWER('VEERA VIJAY') FROM DUAL;
+
+LOWER('VEER
+-----------
+veera vijay
+
+SQL> SELECT * FROM EMP WHERE LOWER(ENAME);
+SELECT * FROM EMP WHERE LOWER(ENAME)
+                                   *
+ERROR at line 1:
+ORA-00920: invalid relational operator
+
+
+SQL> SELECT LOWER(ENAME) FROM EMP;
+
+LOWER(ENAME)
+--------------------
+brock
+cena
+dean
+deepak
+goldberg
+kane
+randy
+rollins
+roman
+sasi
+veera
+vijay
+
+12 rows selected.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>END EXAMPLE OF UPEER AND LOWER >>>>>>>>>>>>
+
+
+SQL> SELECT INITCAP(ENAME)FROM EMP;
+
+INITCAP(ENAME)
+--------------------
+Brock
+Cena
+Dean
+Deepak
+Goldberg
+Kane
+Randy
+Rollins
+Roman
+Sasi
+Veera
+Vijay
+
+12 rows selected.
+
+SQL> SELECT INITCAP('VEERAVIJAY') FROM DUAL;
+
+INITCAP('V
+----------
+Veeravijay
+
+REVERSE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+SQL> SELECT REVERSE(ENAME)FROM EMP;
+
+REVERSE(ENAME)
+--------------------
+KCORB
+
+ZANEC
+NAED
+KAPEED
+GREBDLOG
+ENAK
+YDNAR
+SNILLOR
+NAMOR
+ISAS
+AREEV
+YAJIV
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+SQL> SELECT CONCAT('VEERA','VIJAY') FROM DUAL;
+
+CONCAT('VE
+----------
+VEERAVIJAY
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>CONCAT & REPLACE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+SQL> SELECT REPLACE('VEEAVIJAY','R','A') FROM DUAL;
+
+REPLACE('
+---------
+VEEAVIJAY
+
+SQL> SELECT REPLACE('VEEYAVIJAY','Y','R') FROM DUAL;
+
+REPLACE('V
+----------
+VEERAVIJAR
+
+SQL> SELECT REPLACE(ENAME,'V','X') FROM EMP;
+
+REPLACE(ENAME,'V','X
+--------------------
+BROCK
+CENA
+DEAN
+DEEPAK
+GOLDBERG
+KANE
+RANDY
+ROLLINS
+ROMAN
+SASI
+XEERA
+XIJAY
+
+12 rows selected.
+
+?>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>HIKE OF SAL>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+SQL> 
+SQL> SELECT SAL,ENAME,SAL*12 AS "ANNUALSAL",SAL*12*20/100 FROM EMP;
+
+       SAL ENAME                 ANNUALSAL SAL*12*20/100
+---------- -------------------- ---------- -------------
+      1000 VIJAY                     12000          2400
+      2000 VEERA                     24000          4800
+      3000 DEEPAK                    36000          7200
+      4000 SASI                      48000          9600
+      5000 ROMAN                     60000         12000
+      6000 CENA                      72000         14400
+      7000 RANDY                     84000         16800
+      8000 BROCK                     96000         19200
+      9000 ROLLINS                  108000         21600
+     10000 DEAN                     120000         24000
+     11000 GOLDBERG                 132000         26400
+     10000 KANE                     120000         24000
+
+12 rows selected.
+
+SQL> SELECT SAL,ENAME,SAL*12+SAL*12*20/100 FROM EMP;
+
+       SAL ENAME                SAL*12+SAL*12*20/100
+---------- -------------------- --------------------
+      1000 VIJAY                               14400
+      2000 VEERA                               28800
+      3000 DEEPAK                              43200
+      4000 SASI                                57600
+      5000 ROMAN                               72000
+      6000 CENA                                86400
+      7000 RANDY                              100800
+      8000 BROCK                              115200
+      9000 ROLLINS                            129600
+     10000 DEAN                               144000
+     11000 GOLDBERG                           158400
+     10000 KANE                               144000
+
+12 rows selected.
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>PENALTY SAL>>>>>>>>>>>>
+
+SQL> SELECT ENAME,JOB,SAL,SAL-100 AS "PENALTY SALARY OF EMPLOYESS" FROM EMP;
+
+ENAME                JOB                         SAL  PENALTY SALARY OF EMPLOYESS
+-------------------- -------------------- ----------   ---------------------------
+VIJAY                MANAGER                    1000                         900
+VEERA                CLERK                      2000                        1900
+DEEPAK               ANALYST                    3000                        2900
+SASI                 CLERK                      4000                        3900
+ROMAN                MANAGER                    5000                        4900
+CENA                 CLERK                      6000                        5900
+RANDY                ANALYST                    7000                        6900
+BROCK                MANAGER                    8000                        7900
+ROLLINS              ANALYST                    9000                        8900
+DEAN                 CLERK                     10000                        9900
+GOLDBERG             WWE                       11000                       10900
+KANE                 WWE                       10000                        9900
+
+12 rows selected.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DEDUCTION AND HIKE>>>>>>>>>>>>>>>>>
+SQL> SELECT ENAME,JOB,SAL,SAL*12+SAL*12*20/100 FROM EMP;
+
+ENAME                JOB                         SAL SAL*12+SAL*12*20/100
+-------------------- -------------------- ---------- --------------------
+VIJAY                MANAGER                    1000                14400
+VEERA                CLERK                      2000                28800
+DEEPAK               ANALYST                    3000                43200
+SASI                 CLERK                      4000                57600
+ROMAN                MANAGER                    5000                72000
+CENA                 CLERK                      6000                86400
+RANDY                ANALYST                    7000               100800
+BROCK                MANAGER                    8000               115200
+ROLLINS              ANALYST                    9000               129600
+DEAN                 CLERK                     10000               144000
+GOLDBERG             WWE                       11000               158400
+KANE                 WWE                       10000               144000
+
+12 rows selected.
+
+SQL> SELECT ENAME,JOB,SAL,SAL*12-SAL*12*20/100 FROM EMP;
+
+ENAME                JOB                         SAL SAL*12-SAL*12*20/100
+-------------------- -------------------- ---------- --------------------
+VIJAY                MANAGER                    1000                 9600
+VEERA                CLERK                      2000                19200
+DEEPAK               ANALYST                    3000                28800
+SASI                 CLERK                      4000                38400
+ROMAN                MANAGER                    5000                48000
+CENA                 CLERK                      6000                57600
+RANDY                ANALYST                    7000                67200
+BROCK                MANAGER                    8000                76800
+ROLLINS              ANALYST                    9000                86400
+DEAN                 CLERK                     10000                96000
+GOLDBERG             WWE                       11000               105600
+KANE                 WWE                       10000                96000
+
+12 rows selected.
+
+SQL> 
+
+SQL> SELECT SAL*12+SAL*12*60/100 FROM EMP;
+
+SAL*12+SAL*12*60/100
+--------------------
+               19200
+               38400
+               57600
+               76800
+               96000
+              115200
+              134400
+              153600
+              172800
+              192000
+              211200
+              192000
+
+12 rows selected.
+
+SQL> SELECT SAL*12+SAL*12*20/100 FROM EMP;
+
+SAL*12+SAL*12*20/100
+--------------------
+               14400
+               28800
+               43200
+               57600
+               72000
+               86400
+              100800
+              115200
+              129600
+              144000
+              158400
+              144000
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

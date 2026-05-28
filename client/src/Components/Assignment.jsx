@@ -5,10 +5,12 @@ import {
   FaChalkboardTeacher,
   FaUniversity,
   FaSchool,
+  FaClipboardList,
+   FaUserCheck, 
 } from "react-icons/fa";
 import {  MdGroupAdd } from "react-icons/md";
 
-export const Adminstd = () => {
+export const Assignment = () => {
   const navigate = useNavigate();
   const [userRole, setUserRole] = useState(null);
   
@@ -29,25 +31,25 @@ export const Adminstd = () => {
           {/* Header Section */}
           <div className="text-center mb-8 sm:mb-12">
             <div className="inline-block bg-white/80 backdrop-blur-sm rounded-full px-6 py-2 mb-4">
-              <FaUserGraduate className="text-6xl text-blue-400" />
+              <FaClipboardList className="text-6xl text-blue-500" />
             </div>
-             {userRole === "admin" && (
-            <b className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-900 via-gray-600 to-gray-300 bg-clip-text text-transparent block">
-              Admin Dashboard
-            </b>
-             )}
+            {userRole === "admin" && (
+              <b className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-900 via-gray-600 to-gray-300 bg-clip-text text-transparent block">
+                Admin Dashboard
+              </b>
+            )}
             <p className="text-gray-600 text-sm sm:text-base mt-4! sm:mt-4">
-              Manage Student Records
+              Manage Assignment records
             </p>
           </div>
 
           {/* Student Details Card */}
           <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 mb-6">
             <div className="flex items-center justify-center gap-4 mb-4">
-              <FaUserGraduate className="text-3xl text-red-400" />
+              <FaClipboardList className="text-6xl text-white" />
 
               <h3 className="text-xl sm:text-2xl font-bold text-gray-800">
-                Student Management
+                Students Assignments
               </h3>
             </div>
             <div className="border-t-2 my-3 border-dashed   "></div>
@@ -55,23 +57,27 @@ export const Adminstd = () => {
             {/* Buttons in ONE LINE - FIXED */}
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               {/* Create Button */}
-              {userRole === "admin" && (
-                <button
-                  onClick={() => navigate("/stdform")}
-                  className="w-full sm:w-auto bg-gradient-to-r from-pink-900 via-pink-700 to-pink-400 hover:from-pink-300  hover:to-pink-900 cursor-pointer text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
-                >
-                  <div className="flex items-center gap-2">
-                    <div className=" rounded-full">
-                      <MdGroupAdd className="text-3xl text-white" />
-                    </div>
-                    <h5 className="text-white font-medium">Create students</h5>
-                  </div>
-                </button>
-              )}
+              <button
+                onClick={() => navigate("/createAssignment")}
+                className="bg-gradient-to-r from-pink-900 via-pink-700 to-pink-400 hover:from-pink-300 hover:to-pink-900 cursor-pointer text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+              >
+                <MdGroupAdd className="text-3xl text-white" />
+                <h5 className="text-white font-medium">Create Assignment</h5>
+              </button>
+
+              {/* Review Button */}
+              <button
+                onClick={() => navigate("/reviewassignment")}
+                className="bg-gradient-to-r from-green-900 via-green-600 to-green-400 hover:from-green-600 hover:to-green-700 cursor-pointer text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+              >
+                <FaUserCheck className="text-3xl text-blue-400" />
+                <span>Review All Assignment</span>
+              </button>
+
               {/* View All Button */}
               <button
-                onClick={() => navigate("/viewallstd")}
-                className="w-full sm:w-auto bg-gradient-to-r from-green-900 via-green-600 to-green-400 hover:from-green-600 hover:to-green-700 cursor-pointer text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                onClick={() => navigate("/viewallassignment")}
+                className="bg-gradient-to-r from-blue-900 via-blue-600 to-blue-400 hover:from-green-600 hover:to-green-700 cursor-pointer text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
               >
                 <svg
                   className="w-5 h-5"
@@ -92,7 +98,7 @@ export const Adminstd = () => {
                     d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                   />
                 </svg>
-                <span>View All Students</span>
+                <span>View All Assignment</span>
               </button>
             </div>
           </div>
@@ -123,4 +129,4 @@ export const Adminstd = () => {
   );
 };
 
-export default Adminstd;
+export default Assignment;

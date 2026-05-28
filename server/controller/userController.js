@@ -210,7 +210,7 @@ const resendOTP = async (req, res) => {
 
     // Generate new OTP
     const newOtp = generateOTP();
-    const newExpiry = new Date(Date.now() + 10 * 60 * 1000);
+    const newExpiry = new Date(Date.now() +  60 * 1000);
 
     user.otpCode = newOtp;
     user.otpExpiresAt = newExpiry;
@@ -246,7 +246,7 @@ const forgotPassword = async (req, res) => {
       return res.status(404).json({ success: false, message: "Email not found" });
     }
 
-    // Generate OTP
+    // Generate forgot  password OTP
     const otp = generateForgotPasswordOTP();  // 4-digit OTP
     const expiresAt = new Date(Date.now() + 30 * 1000);
 
@@ -255,7 +255,7 @@ const forgotPassword = async (req, res) => {
     user.forgotPasswordExpiry = expiresAt;
     await user.save();
 
-    // ⭐ Send email using nodemailer ⭐
+    //  Send email using nodemailer 
     await sendForgotPasswordOTP(user.email, user.username, otp);
 
     res.json({ 

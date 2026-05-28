@@ -1,6 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { MdMenuBook } from "react-icons/md";
+import {
+ 
+  FaClipboardList
+ 
+} from "react-icons/fa";
+
 
 
 import {
@@ -20,7 +26,6 @@ const Dashboard = () => {
         {/* Header Section */}
         <div className="text-center mb-10">
           {/* <div className="inline-block p-4 bg-white/20 backdrop-blur-sm rounded-full mb-4">
-            <span className="text-5xl">📚</span>
           </div> */}
           <h1 className="text-4xl mt-4 md:text-5xl font-bold text-white mb-3 bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 bg-clip-text text-transparent">
             Welcome to Dashboard
@@ -31,7 +36,7 @@ const Dashboard = () => {
         </div>
 
         {/* Button Container */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           {/* Books Button */}
           <button
             onClick={() => navigate("/adminbook")}
@@ -88,6 +93,38 @@ const Dashboard = () => {
               <p className="text-white/80 text-sm">Manage student records</p>
               <div className="mt-4 inline-flex items-center cursor-pointer text-white text-sm font-semibold">
                 Go to Students
+                <svg
+                  className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
+            </div>
+          </button>
+            <button
+            onClick={() => navigate("/assignment")}
+            className="group relative overflow-hidden cursor-pointer bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative z-10">
+              <div className="text-6xl flex justify-center mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                         <FaClipboardList className="text-6xl text-white" />
+
+                
+               
+              </div>
+              <h2 className="text-2xl font-bold text-white mb-2">Assignment submissions</h2>
+              <p className="text-white/80 text-sm">Manage Assignments</p>
+              <div className="mt-4 inline-flex items-center cursor-pointer text-white text-sm font-semibold">
+                Go to Assignment portal
                 <svg
                   className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
                   fill="none"

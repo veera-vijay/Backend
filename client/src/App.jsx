@@ -1,7 +1,9 @@
 import React from 'react';
+import {useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './Components/Home';
 import Login from './Components/Login';
+import Logout from "./Components/Logout";
 import ForgotPassword from "./components/ForgotPassword";
 import Register from './Components/Register';
 import Adminbook from"./Components/Adminbook";
@@ -11,8 +13,29 @@ import Viewbooks from './Components/Viewbooks';
 import Dashboard from "./Components/Dashboard";
 import StdForm from "./Components/StdForm";
 import Viewallstd from "./Components/Viewallstd";
+import Assignment from"./Components/Assignment"
+import CreateAssignment from "./Components/CreateAssignment";
+import ViewallAssignment from "./Components/ViewallAssignment";
+import ReviewAssignment from "./Components/ReviewAssignment";
 
 function App() {
+  useEffect(() => {
+  const interval = setInterval(() => {
+    const loginTime = localStorage.getItem("loginTime");
+    
+    if (loginTime) {
+      const secondsPassed = (Date.now() - parseInt(loginTime)) / 1000;
+      
+      if (secondsPassed >= 3600) {
+        alert("Session expired! Please login again.");
+        localStorage.clear();
+        window.location.href = "/login";
+      }
+    }
+  }, 1000);
+  
+  return () => clearInterval(interval);
+}, []);
   return (
     <Router>
       {" "}
@@ -21,6 +44,8 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/" element={<Navigate to="home" />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/register" element={<Register />} />
         <Route path="/createbook" element={<Createbooks />} />
@@ -30,32 +55,16 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/stdform" element={<StdForm />} />
         <Route path="/viewallstd" element={<Viewallstd />} />
+        <Route path="/assignment" element={<Assignment />} />
+       <Route path="/createassignment" element={<CreateAssignment />} />
+        <Route path="/viewallassignment" element={<ViewallAssignment />} />
+        <Route path="/reviewassignment" element={<ReviewAssignment />} />
 
-        <Route
-          path="/connect"
-          element={
-            <div className="min-h-screen bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center">
-              <div className="bg-white rounded-xl shadow-xl p-8 text-center max-w-md">
-                <h1 className="text-2xl font-bold text-gray-800 mb-4">
-                  Dashboard
-                </h1>
-                <p className="text-gray-600 mb-4">
-                  Welcome back, {localStorage.getItem("username")}!
-                </p>
-                <button
-                  onClick={() => {
-                    localStorage.removeItem("isLoggedIn");
-                    localStorage.removeItem("username");
-                    window.location.href = "/login";
-                  }}
-                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
-                >
-                  Logout
-                </button>
-              </div>
-            </div>
-          }
-        />
+
+        
+
+        
+        
       </Routes>
     </Router>
   );

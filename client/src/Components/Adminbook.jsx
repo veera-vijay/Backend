@@ -34,9 +34,11 @@ export const Adminbook = () => {
                 <MdAutoStories className="text-6xl text-green-600" />
               </span>
             </div>
+             {userRole === "admin" && (
             <b className="text-2xl sm:text-3xl md:text-4xl font-bold text-black block">
               Admin Dashboard
             </b>
+             )}
             <p className="text-gray-600 text-sm sm:text-base mt-3! sm:mt-4">
               Manage Your Book Collection
             </p>

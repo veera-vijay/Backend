@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { HiHome } from "react-icons/hi";
 import { FaSignInAlt } from "react-icons/fa";
-import { FaUserPlus } from "react-icons/fa";
+import { FaUserPlus, FaSignOutAlt
+ } from "react-icons/fa";
 import {  MdAutoStories  } from "react-icons/md";
 
 
@@ -26,8 +27,8 @@ const Home = () => {
               className="flex items-center space-x-2 cursor-pointer"
               onClick={() => navigate("/")}
             >
-              <span className="text-2xl">             
-                   <MdAutoStories className="text-6xl text-white" />
+              <span className="text-2xl">
+                <MdAutoStories className="text-6xl text-white" />
               </span>
               <span className="text-white font-bold text-xl">BookStore</span>
             </div>
@@ -51,6 +52,12 @@ const Home = () => {
                 className="px-4 py-1.5 bg-white/20 cursor-pointer text-white rounded-full hover:bg-white/30 transition duration-300 font-medium"
               >
                 Register
+              </button>
+              <button
+                onClick={() => navigate("/logout")}
+                className="px-4 py-1.5 bg-white/20 text-white cursor-pointer rounded-full hover:bg-white/30 transition duration-300 font-medium"
+              >
+                Logout
               </button>
             </div>
 
@@ -110,9 +117,9 @@ const Home = () => {
               }}
               className="w-full text-left px-4 py-2 text-white bg-white/10 rounded-lg hover:bg-white/20 transition duration-300 font-medium"
             >
-              <div className='flex gap-2'>
-              <HiHome className="w-5 h-5" /> Home
-</div>
+              <div className="flex gap-2">
+                <HiHome className="w-5 h-5" /> Home
+              </div>
             </button>
             <button
               onClick={() => {
@@ -121,10 +128,10 @@ const Home = () => {
               }}
               className="w-full text-left px-4 py-2 text-white bg-white/10 rounded-lg hover:bg-white/20 transition duration-300 font-medium"
             >
-              <div className='flex gap-2'>
+              <div className="flex gap-2">
                 <FaSignInAlt className="w-5 h-5" />
-                login </div>
-            
+                login{" "}
+              </div>
             </button>
             <button
               onClick={() => {
@@ -132,10 +139,25 @@ const Home = () => {
                 navigate("/register");
               }}
               className="w-full text-left px-4 py-2 text-white bg-white/10 rounded-lg hover:bg-white/20 transition duration-300 font-medium"
-            > <div className='flex gap-2'>
-               <FaUserPlus className="w-5 h-5 text-white" />
-               Register
-               </div>
+            >
+              {" "}
+              <div className="flex gap-2">
+                <FaUserPlus className="w-5 h-5 text-white" />
+                Register
+              </div>
+            </button>
+            <button
+              onClick={() => {
+                setIsMenuOpen(false);
+                navigate("/logout");
+              }}
+              className="w-full text-left px-4 py-2 text-white bg-white/10 rounded-lg hover:bg-white/20 transition duration-300 font-medium"
+            >
+              {" "}
+              <div className="flex gap-2">
+                <FaSignOutAlt className="text-lg transform scale-x-[-1]" />
+                Logout
+              </div>
             </button>
           </div>
         </div>
@@ -177,16 +199,16 @@ const Home = () => {
           </div>
         </div>
       </div>
-     
+
       <footer className="w-full bg-gray-900/95 backdrop-blur-sm md:-mt-20">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-2 py-4">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.50 }}
+            transition={{ duration: 0.5 }}
           >
             <p className="text-white/70 text-sm text-center">
-              © 2024 BookStore. All rights reserved. Made with ❤️ for book
+              © 2026 BookStore. All rights reserved. Made with ❤️ for book
               lovers.
             </p>
           </motion.div>
