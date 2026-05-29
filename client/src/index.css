@@ -3,6 +3,17 @@
 /* ::-webkit-scrollbar {
   display: none;
 } */
+ /* Add to your index.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* For code/monospace elements */
+code, pre {
+  font-family: 'Courier New', monospace;
+}
 :root {
   --text: #6b6375;
   --text-h: #08060d;

@@ -23,7 +23,7 @@ export const Adminstd = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-6 md:p-8">
+      <div className="min-h-screen bg-gradient-to-br from-blue-500 to-indigo-100 p-4 sm:p-6 md:p-8">
         {/* Main Container */}
         <div className="max-w-4xl mx-auto">
           {/* Header Section */}

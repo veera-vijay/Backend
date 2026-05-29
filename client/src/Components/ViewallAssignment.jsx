@@ -164,7 +164,7 @@ function ViewallAssignment() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-dark-900 flex items-center justify-center">
+      <div className="min-h-screen text-white flex items-center justify-center">
         <div className="text-center">
           <div className="relative w-20 h-20 mx-auto">
             <div className="absolute inset-0 border-4 border-purple-200 rounded-full"></div>
@@ -177,7 +177,7 @@ function ViewallAssignment() {
   }
 
   return (
-    <div className="min-h-screen bg-dark-900">
+    <div className="min-h-screen bg-dark-300">
       {/* Background Pattern */}
       <div className="fixed inset-0 opacity-5 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(139,92,246,0.4),transparent_50%)]"></div>

@@ -177,7 +177,7 @@ function CreateAssignment() {
           <form onSubmit={handleSubmit} className="p-7">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block flex flex-start text-sm font-semibold text-gray-700 mb-2">
                   Assignment Title <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -186,13 +186,13 @@ function CreateAssignment() {
                   value={formData.title}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition text-sm"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition text-sm font-medium text-black"
                   placeholder="e.g., React.js Final Project"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block flex flex-start text-sm font-semibold text-gray-700 mb-2">
                   <FaCalendarAlt className="inline mr-1 text-gray-400" />{" "}
                   Deadline <span className="text-red-500">*</span>
                 </label>
@@ -203,14 +203,14 @@ function CreateAssignment() {
                   onChange={handleChange}
                   required
                   min={new Date().toISOString().split("T")[0]}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition text-sm"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition text-sm font-medium text-black"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block flex flex-start  text-sm font-semibold text-gray-700 mb-2">
                   <FaStar className="inline mr-1 text-yellow-500" /> Maximum
                   Marks <span className="text-red-500">*</span>
                 </label>
@@ -222,15 +222,14 @@ function CreateAssignment() {
                   required
                   min="1"
                   max="100"
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition text-sm"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition text-sm font-medium text-black"
                   placeholder="e.g., 100"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block flex flex-start text-sm font-semibold text-gray-700 mb-2">
                   <FaUpload className="inline mr-1 text-gray-400" /> Attachments
-                  (Optional)
                 </label>
                 <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-purple-400 transition bg-gray-50">
                   <input
@@ -286,7 +285,7 @@ function CreateAssignment() {
             </div>
 
             <div className="mb-6">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label className="block flex flex-start text-sm font-semibold text-gray-700 mb-2">
                 <FaAlignLeft className="inline mr-1 text-gray-400" />{" "}
                 Description <span className="text-red-500">*</span>
               </label>
@@ -296,7 +295,7 @@ function CreateAssignment() {
                 onChange={handleChange}
                 required
                 rows="5"
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition text-sm resize-none"
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition text-sm resize-none font-medium text-black"
                 placeholder="Describe the assignment requirements, instructions, and expectations..."
               />
             </div>

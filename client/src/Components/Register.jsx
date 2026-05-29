@@ -16,7 +16,7 @@ function Register() {
 
   // Email validation function
   const validateEmail = (email) => {
-    const emailRegex = (/^[a-z]+[\d]+@[a-z]+.com$/);
+    const emailRegex = (/^[a-z0-9]+@[a-z]+.com$/);
     return emailRegex.test(email);
   };
 

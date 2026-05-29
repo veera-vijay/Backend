@@ -25,7 +25,7 @@ export const Assignment = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-6 md:p-8">
+      <div className="min-h-screen bg-gradient-to-r from-blue-500 via-indigo-100 to-blue-600 p-4 sm:p-6 md:p-8">
         {/* Main Container */}
         <div className="max-w-4xl mx-auto">
           {/* Header Section */}
@@ -56,23 +56,30 @@ export const Assignment = () => {
 
             {/* Buttons in ONE LINE - FIXED */}
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+           
               {/* Create Button */}
-              <button
-                onClick={() => navigate("/createAssignment")}
-                className="bg-gradient-to-r from-pink-900 via-pink-700 to-pink-400 hover:from-pink-300 hover:to-pink-900 cursor-pointer text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
-              >
-                <MdGroupAdd className="text-3xl text-white" />
-                <h5 className="text-white font-medium">Create Assignment</h5>
-              </button>
+           
+              {userRole === "admin" && (
+                <button
+                  onClick={() => navigate("/createAssignment")}
+                  className="bg-gradient-to-r from-pink-900 via-pink-700 to-pink-400 hover:from-pink-300 hover:to-pink-900 cursor-pointer text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                >
+                  <MdGroupAdd className="text-3xl text-white" />
+                  <h5 className="text-white font-medium">Create Assignment</h5>
+                </button>
+              )}
 
               {/* Review Button */}
-              <button
-                onClick={() => navigate("/reviewassignment")}
-                className="bg-gradient-to-r from-green-900 via-green-600 to-green-400 hover:from-green-600 hover:to-green-700 cursor-pointer text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
-              >
-                <FaUserCheck className="text-3xl text-blue-400" />
-                <span>Review All Assignment</span>
-              </button>
+
+              {userRole === "admin" && (
+                <button
+                  onClick={() => navigate("/reviewassignment")}
+                  className="bg-gradient-to-r from-green-900 via-green-600 to-green-400 hover:from-green-600 hover:to-green-700 cursor-pointer text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                >
+                  <FaUserCheck className="text-3xl text-blue-400" />
+                  <span>Review All Assignment</span>
+                </button>
+              )}
 
               {/* View All Button */}
               <button

@@ -20,7 +20,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-green-600 to-blue-600 flex items-center justify-center p-4">
       {/* Main Card */}
       <div className="max-w-2xl w-full">
         {/* Header Section */}

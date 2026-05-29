@@ -62,7 +62,7 @@ function ReviewAssignment() {
 
       setMessage({
         type: "success",
-        text: "✅ Review submitted successfully!",
+        text: "Review submitted successfully!",
       });
       setSelectedSub(null);
       setMarks("");
@@ -109,7 +109,7 @@ function ReviewAssignment() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-r from-gray-300 via-red-300 to-pink-300 py-8 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
