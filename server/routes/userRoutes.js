@@ -1,9 +1,9 @@
 const userController=require("../controller/userController")
 const assignmentcontroller=require("../controller/assignmentcontroller")
-
+const doubtController=require("../controller/doubtController")
 const  express=require("express")
 const router=express.Router();
-const { generateToken } = require("../utils/jwt"); // ← ADD THIS
+const { generateToken,verifyToken} = require("../utils/jwt"); // ← ADD THIS
 
 
 // const { upload,
@@ -25,6 +25,11 @@ router.get("/user-getstd",userController.viewallstd)
 router.put("/user-updatestd/:id", userController.updatestd);
 router.delete("/user-deletestd/:id", userController.deletestd);
 
+
+
+
+// =======Assignment==========
+
 const { upload } = require('../controller/assignmentcontroller');
 
 
@@ -36,5 +41,30 @@ router.get("/submissions/student/:studentId",assignmentcontroller.getStudentSubm
 router.put("/submissions/review/:submissionId",assignmentcontroller.reviewSubmission);
 router.get("/submissions/review",assignmentcontroller.getSubmissionsForReview);
 router.put("/submissions/review/:submissionId",assignmentcontroller.submitReview);
+
+
+
+
+
+
+
+
+// ============ STUDENT ROUTES (with verifyToken) ============
+router.post("/questions", verifyToken, doubtController.createQuestion);
+router.get("/questions", verifyToken, doubtController.getAllQuestions);
+router.get("/questions/my", verifyToken, doubtController.getMyQuestions);
+router.get("/questions/:id", verifyToken, doubtController.getQuestionById);
+router.put("/questions/:id", verifyToken, doubtController.editQuestion);
+router.delete("/questions/:id", verifyToken, doubtController.deleteQuestion);
+
+// ============ ANSWER ROUTES ============
+router.post("/questions/:questionId/answer", verifyToken, doubtController.addAnswer);
+router.post("/answers/:id/like", verifyToken, doubtController.likeAnswer);
+router.post("/answers/:id/comment", verifyToken, doubtController.addComment);
+router.put("/questions/:id/pin", verifyToken, doubtController.pinQuestion);
+
+// ============ ADMIN ROUTES ============
+router.delete("/admin/questions/:id", verifyToken, doubtController.adminDeleteQuestion);
+router.delete("/admin/answers/:id", verifyToken, doubtController.adminDeleteAnswer);
 
 module.exports=router

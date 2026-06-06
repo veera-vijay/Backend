@@ -25,7 +25,7 @@ export const Assignment = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-r from-blue-500 via-indigo-100 to-blue-600 p-4 sm:p-6 md:p-8">
+      <div className="min-h-screen bg-gradient-to-r from-blue-500 via-indigo-100 to-blue-600 p-4 sm:p-6 md:p-8  hide-scrollbar overflow-y-auto">
         {/* Main Container */}
         <div className="max-w-4xl mx-auto">
           {/* Header Section */}
@@ -46,7 +46,7 @@ export const Assignment = () => {
           {/* Student Details Card */}
           <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 mb-6">
             <div className="flex items-center justify-center gap-4 mb-4">
-              <FaClipboardList className="text-6xl text-white" />
+              <FaClipboardList className="text-3xl text-red-300" />
 
               <h3 className="text-xl sm:text-2xl font-bold text-gray-800">
                 Students Assignments
@@ -56,9 +56,8 @@ export const Assignment = () => {
 
             {/* Buttons in ONE LINE - FIXED */}
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-           
               {/* Create Button */}
-           
+
               {userRole === "admin" && (
                 <button
                   onClick={() => navigate("/createAssignment")}

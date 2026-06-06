@@ -13,7 +13,7 @@ const generateToken = (user) => {
        timestamp: Date.now() 
   };
   
-  const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "10s" });
+  const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "1d" });
 
  const decoded = jwt.decode(token);
   const now = Date.now();

@@ -11,7 +11,6 @@ const attachmentSchema = new mongoose.Schema({
   },
 });
 
-// ✅ THEN, use it in the main assignment schema
 const assignmentSchema = new mongoose.Schema({
   title: {
     type: String,
